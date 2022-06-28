@@ -1,38 +1,49 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.game-header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 12px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-content {
+  align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.new-card-area {
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.form-new-card {
+  display: flex;
+  gap: 12px;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+  width: 100%;
+}
+
+@media screen and ( max-width : 679px ) {
+
+  .form-new-card {
+    align-items: center;
+    flex-direction: column;
   }
 }

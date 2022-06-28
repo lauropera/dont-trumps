@@ -1,0 +1,35 @@
+.deck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 80%;
+}
+
+.deck .card {
+  height: 470px;
+  position: relative;
+}
+
+.deck-card {
+  position: relative;
+}
+
+.deck .delete-button {
+  cursor: pointer;
+  padding: 4px;
+  position: absolute;
+  right: 52px;
+  top: 130px;
+  z-index: 6;
+}
+
+@media screen and ( max-width : 679px ) {
+
+  .cards-list {
+    gap: 30px;
+  }
+
+  .deck {
+    width: auto;
+  }
+}

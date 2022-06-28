@@ -1,0 +1,78 @@
+.newCard-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  padding: 8px;
+  width: 54vh;
+}
+
+.input-area {
+  align-items: center;
+  border: 1px solid;
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.info-area {
+  padding: 6px;
+}
+
+.description-area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.description-area textarea {
+  height: 10vh;
+  resize: none;
+  width: 100%;
+}
+
+.attr-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.attr-container label {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 32%;
+}
+
+.rarity-area {
+  flex-direction: column;
+}
+
+.rarity-area input {
+  padding: 6px;
+  width: 50%;
+}
+
+.trunfocard-area {
+  display: flex;
+  justify-content: center;
+}
+
+.trunfo-input {
+  cursor: pointer;
+}
+
+.savecard-btn {
+  cursor: pointer;
+  padding: 8px;
+}
+
+
+@media screen and ( max-width : 679px ) {
+
+  .info-area {
+    width: 60%;
+  }
+
+}

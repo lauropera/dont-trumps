@@ -1,0 +1,178 @@
+@font-face {
+  font-family: Forbidden-Knowledge;
+  src: url('fonts/Forbidden-Knowledge.ttf') format('truetype');
+}
+
+.card-container {
+  padding: 3rem 2.6rem;
+  position: relative;
+}
+
+.mold {
+  left: 8px;
+  position: absolute;
+  top: 4px;
+  z-index: 1;
+}
+
+.mold img {
+  height: 562px;
+  width: 400px;
+}
+
+.card-header {
+  background-color: #40355a;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  padding: 6px 4px 0;
+  position: relative;
+  width: 100%;
+}
+
+.card-rarity, .card-trunfo {
+  align-items: center;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 56px;
+  z-index: 5;
+}
+
+.card-rarity img, .card-trunfo img {
+  width: 60px;
+}
+
+.card-header h2 {
+  align-self: flex-end;
+  color: #eeff;
+  font-family: Forbidden-Knowledge , sans-serif;
+  font-size: 38px;
+  inline-size: 214px;
+  left: 56px;
+  overflow-wrap: break-word;
+  position: absolute;
+  text-align: center;
+  text-shadow: 2px 2px black;
+  top: 28px;
+  z-index: 6;
+}
+
+.card-image {
+  align-items: center;
+  display: flex;
+  height: 240px;
+  justify-content: center;
+  position: relative;
+  width: 90%;
+}
+
+.noface-character {
+  height: 360px;
+  object-fit: contain;
+  position: absolute;
+  width: 286px;
+  z-index: 1;
+}
+
+.portrait, .user-character {
+  height: 360px;
+  object-fit: contain;
+  position: absolute;
+  width: 286px;
+  z-index: 1;
+}
+
+.card-attrs {
+  display: flex;
+  height: 50px;
+  justify-content: space-evenly;
+  list-style: none;
+  width: 90%;
+  z-index: 3;
+}
+
+.card-attrs li {
+  align-items: center;
+  background-color: #23192f;
+  border: 1px solid #d0cfcf;
+  border-radius: 100%;
+  display: flex;
+  font-size: 22px;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+  z-index: 2;
+}
+
+.card-attrs li img {
+  height: 80%;
+  position: absolute;
+  top: -22px;
+  width: 80%;
+}
+
+.card-description {
+  align-items: flex-start;
+  background-color: #40355a;
+  border: 1px solid #bdc6d5;
+  color: #eef;
+  display: flex;
+  font-size: 14px;
+  height: 92px;
+  width: 90%;
+  z-index: 2;
+}
+
+.card-description p {
+  inline-size: 100%;
+  overflow-wrap: break-word;
+  padding: 6px;
+  z-index: 6;
+}
+
+.card {
+  align-items: center;
+  background-color: #23192f;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 470px;
+  position: relative;
+  width: 330px;
+}
+
+@media screen and ( max-width : 679px ) {
+
+  .card-container {
+    padding: 2rem;
+  }
+
+  .mold {
+    left: 4px;
+    top: -12px;
+  }
+
+  .mold img {
+    height: 560px;
+    width: 330px;
+  }
+
+  .card {
+    width: 270px;
+  }
+
+  .card-header h2 {
+    left: 30px;
+  }
+
+  .card-description p {
+    padding: 2px;
+  }
+
+}
