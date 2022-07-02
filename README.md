@@ -4,13 +4,9 @@
 
 ## Acesse meu projeto <a href="https://lauropera.github.io/dont-trumps/">AQUI</a>
 
-#
-
 ## :satellite: Desenvolvimento
 
 Nesse projeto desenvolvemos uma aplicação de um jogo no estilo Super Trunfo. Era necessário que nós manipulasse o estado da nossa aplicação e as propriedades de um componente.
-
-#
 
 ## :hammer_and_wrench: Tecnologias
 
@@ -19,12 +15,10 @@ Nesse projeto desenvolvemos uma aplicação de um jogo no estilo Super Trunfo. E
 * JavaScript
 * React.js
 
-# :vhs: Screenshots
+# :camera: Screenshots
 
 ![PC Screenshot](./imgs/deck-screenshot1.png)
 ![PC Screenshot](./imgs/deck-screenshot2.png)
-
-#
 
 ## :heavy_check_mark: Nota
 ![Minha nota no projeto](./imgs/nota-projeto.png)
