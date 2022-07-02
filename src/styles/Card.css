@@ -24,7 +24,7 @@
 .mold {
   left: 8px;
   position: absolute;
-  top: 4px;
+  top: 5px;
   z-index: 2;
 }
 
@@ -131,7 +131,7 @@
   object-fit: contain;
   position: absolute;
   text-align: center;
-  width: 100%;
+  width: 295px;
   z-index: 2;
 }
 
@@ -215,7 +215,6 @@
   .card-header h2 {
     inline-size: 230px;
     left: 20px;
-    top: 45px;
   }
 
   .card-rarity {
