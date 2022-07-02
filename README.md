@@ -8,6 +8,8 @@
 
 Nesse projeto desenvolvemos uma aplicação de um jogo no estilo Super Trunfo. Era necessário que nós manipulasse o estado da nossa aplicação e as propriedades de um componente.
 
+Vou continuar evoluindo ele com o tempo!
+
 ## :hammer_and_wrench: Tecnologias
 
 * HTML
