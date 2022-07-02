@@ -1,41 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaTrash } from 'react-icons/fa';
+import deckArr from '../data/deck-data';
 import Card from './Card';
 import '../styles/Deck.css';
 
 class Deck extends React.Component {
+  applyFilters = (deck) => {
+    const { filterTrunfo, filterName, filterRarity } = this.props;
+    return deck.filter(({ cardName, cardRare, cardTrunfo }) => {
+      if (filterTrunfo) return cardTrunfo === true;
+      return (
+        cardName.toLowerCase().includes(filterName.toLowerCase())
+        && (cardRare === filterRarity || filterRarity === 'todas')
+      );
+    });
+  };
+
   render() {
-    const {
-      filterName, filterRarity, filterTrunfo, cardList, removeCard,
-    } = this.props;
-    console.log(filterRarity);
+    const { cardList, removeCard } = this.props;
     return (
-      <div className="deck">
-        {cardList
-          .filter(({ cardName, cardRare, cardTrunfo }) => {
-            if (filterTrunfo) return cardTrunfo === true;
-            return (
-              cardName.includes(filterName)
-              && (cardRare === filterRarity || filterRarity === 'todas')
-            );
-          })
-          .map((card) => (
-            <div key={ card.cardName } className="deck-card">
-              <Card { ...card } />
-              <div>
-                <button
-                  id={ card.cardName }
-                  type="button"
-                  data-testid="delete-button"
-                  className="delete-button"
-                  onClick={ removeCard }
-                >
-                  Excluir
-                </button>
-              </div>
-            </div>
-          ))}
-      </div>
+      <main className="deck">
+        {this.applyFilters(cardList).map((card) => (
+          <div key={ card.cardName } className="deck-container">
+            <Card { ...card } />
+            <button
+              id={ card.cardName }
+              type="button"
+              data-testid="delete-button"
+              className="delete-button"
+              onClick={ removeCard }
+            >
+              <FaTrash pointerEvents="none" />
+            </button>
+          </div>
+        ))}
+        {this.applyFilters(deckArr).map((card) => (
+          <div key={ card.cardName } className="deck-container">
+            <Card { ...card } customCard />
+          </div>
+        ))}
+      </main>
     );
   }
 }

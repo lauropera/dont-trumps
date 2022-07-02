@@ -6,8 +6,8 @@ class FilterArea extends React.Component {
   render() {
     const { onInputChange, filterTrunfo } = this.props;
     return (
-      <div className="filter-inputs">
-        <label htmlFor="name">
+      <section className="filter-area">
+        <label htmlFor="name" className="filter-name">
           <input
             id="name"
             name="cardsByName"
@@ -18,7 +18,7 @@ class FilterArea extends React.Component {
             placeholder="Nome da carta"
           />
         </label>
-        <label htmlFor="rare-filter">
+        <label htmlFor="rare-filter" className="filter-rare">
           <select
             id="rare-filter"
             name="cardsByRarity"
@@ -27,12 +27,12 @@ class FilterArea extends React.Component {
             onChange={ onInputChange }
           >
             <option>todas</option>
-            <option value="rarity-1">normal</option>
-            <option value="rarity-2">raro</option>
-            <option value="rarity-3">muito raro</option>
+            <option>normal</option>
+            <option>raro</option>
+            <option>muito raro</option>
           </select>
         </label>
-        <label htmlFor="trunfo-filter">
+        <label htmlFor="trunfo-filter" className="trunfo-filter">
           <input
             id="trunfo-filter"
             name="showTrunfoCard"
@@ -43,7 +43,7 @@ class FilterArea extends React.Component {
           {' '}
           Super Trybe Trunfo
         </label>
-      </div>
+      </section>
     );
   }
 }

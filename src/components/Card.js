@@ -16,12 +16,18 @@ import '../styles/Card.css';
 class Card extends React.Component {
   setCardRarity(rarityId) {
     switch (rarityId) {
-    case 'rarity-2':
+    case 'raro':
       return rarityRare;
-    case 'rarity-3':
+    case 'muito raro':
       return rarityVeryRare;
-    default: return rarityNormal;
+    default:
+      return rarityNormal;
     }
+  }
+
+  setTestId(id) {
+    const { customCard } = this.props;
+    return customCard ? '' : id;
   }
 
   isTrunfo(trunfoInfo) {
@@ -30,8 +36,14 @@ class Card extends React.Component {
 
   render() {
     const {
-      cardName, cardDescription, cardImage,
-      cardAttr1, cardAttr2, cardAttr3, cardRare, cardTrunfo,
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
     } = this.props;
     return (
       <section className="card-container">
@@ -43,19 +55,25 @@ class Card extends React.Component {
             <div className="card-rarity">
               <img src={ this.setCardRarity(cardRare) } alt={ cardRare } />
             </div>
-            <h2 data-testid="name-card">{ cardName.toUpperCase() }</h2>
+            <p
+              data-testid={ this.setTestId('rare-card') }
+              className="rarity-text"
+            >
+              {cardRare}
+            </p>
+            <h2 data-testid={ this.setTestId('name-card') }>{cardName}</h2>
             <div className="card-trunfo">
-              <img
-                data-testid="trunfo-card"
-                src={ this.isTrunfo(cardTrunfo) }
-                alt="Super Trunfo"
-              />
+              {cardTrunfo && (
+                <p data-testid={ this.setTestId('trunfo-card') }>Super Trunfo</p>
+              )}
+              <img src={ this.isTrunfo(cardTrunfo) } alt="Super Trunfo" />
             </div>
           </header>
+          <div className="background-noise" />
           <div className="card-image">
-            { cardImage === '' ? (
+            {cardImage === '' ? (
               <img
-                data-testid="image-card"
+                data-testid={ this.setTestId('image-card') }
                 src={ noImageCharacter }
                 alt="Sem rosto"
                 className="noface-character"
@@ -64,11 +82,11 @@ class Card extends React.Component {
               <>
                 <img
                   src={ portraitCharacter }
-                  alt=""
+                  alt="Moldura"
                   className="portrait"
                 />
                 <img
-                  data-testid="image-card"
+                  data-testid={ this.setTestId('image-card') }
                   className="user-character"
                   src={ cardImage }
                   alt={ cardName }
@@ -77,21 +95,23 @@ class Card extends React.Component {
             )}
           </div>
           <ul className="card-attrs">
-            <li data-testid="attr1-card">
-              { cardAttr1 }
+            <li data-testid={ this.setTestId('attr1-card') }>
+              {cardAttr1}
               <img src={ atkIcon } alt="Icone de lança" />
             </li>
-            <li data-testid="attr2-card">
-              { cardAttr2 }
+            <li data-testid={ this.setTestId('attr2-card') }>
+              {cardAttr2}
               <img src={ intIcon } alt="Icone de Armadura" />
             </li>
-            <li data-testid="attr3-card">
-              { cardAttr3 }
+            <li data-testid={ this.setTestId('attr3-card') }>
+              {cardAttr3}
               <img src={ defIcon } alt="Icone de Livro" />
             </li>
           </ul>
           <div className="card-description">
-            <p data-testid="description-card">{ cardDescription }</p>
+            <p data-testid={ this.setTestId('description-card') }>
+              {cardDescription}
+            </p>
           </div>
         </div>
       </section>
@@ -99,15 +119,28 @@ class Card extends React.Component {
   }
 }
 
+Card.defaultProps = {
+  cardName: '',
+  cardDescription: '',
+  cardAttr1: '0',
+  cardAttr2: '0',
+  cardAttr3: '0',
+  cardImage: '',
+  cardRare: '',
+  cardTrunfo: false,
+  customCard: false,
+};
+
 Card.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
+  cardName: PropTypes.string,
+  cardDescription: PropTypes.string,
+  cardAttr1: PropTypes.string,
+  cardAttr2: PropTypes.string,
+  cardAttr3: PropTypes.string,
+  cardImage: PropTypes.string,
+  cardRare: PropTypes.string,
+  cardTrunfo: PropTypes.bool,
+  customCard: PropTypes.bool,
 };
 
 export default Card;

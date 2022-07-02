@@ -1,14 +1,18 @@
 * {
   box-sizing: border-box;
+  font-family: Secular One , sans-serif;
   margin: 0;
   padding: 0;
 }
 
 .game-header {
   align-items: center;
+  background-color: #23192f;
+  color: #e3e2ec;
   display: flex;
   justify-content: center;
   padding: 12px;
+  width: 100%;
 }
 
 .main-content {
@@ -19,31 +23,44 @@
 
 .new-card-area {
   align-items: center;
+  background-color: #e9e9f0;
+  border-bottom: 4px solid #23192f;
+  color: #23192f;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 18px 0 32px;
   width: 100%;
 }
 
 .form-new-card {
+  align-items: center;
   display: flex;
-  gap: 12px;
+  gap: 24px;
   justify-content: space-evenly;
   width: 100%;
 }
 
-.cards-list {
+.card-filter-area, .deck {
+  background-attachment: fixed;
+  background-image: url('./data/card-images/background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-filter-area {
+  color: white;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 20px;
+  justify-content: center;
+  padding: 0 20px 20px;
   width: 100%;
 }
 
 @media screen and ( max-width : 679px ) {
 
   .form-new-card {
-    align-items: center;
     flex-direction: column;
   }
 }

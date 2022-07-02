@@ -1,6 +1,19 @@
 @font-face {
   font-family: Forbidden-Knowledge;
-  src: url('fonts/Forbidden-Knowledge.ttf') format('truetype');
+  src: url('../fonts/Forbidden-Knowledge.ttf') format('truetype');
+}
+
+.background-noise {
+  background-image: url('../data/card-images/noise.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 20px 6px #23192f;
+  height: 410px;
+  opacity: 0.6;
+  position: absolute;
+  top: 60px;
+  width: 322px;
+  z-index: 1;
 }
 
 .card-container {
@@ -12,7 +25,7 @@
   left: 8px;
   position: absolute;
   top: 4px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .mold img {
@@ -20,30 +33,71 @@
   width: 400px;
 }
 
+.card {
+  align-items: center;
+  background-color: #23192f;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 470px;
+  overflow: hidden;
+  position: relative;
+  width: 330px;
+}
+
 .card-header {
-  background-color: #40355a;
+  background-color: #23192f;
+  border-bottom: 4px solid black;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   display: flex;
   height: 60px;
   justify-content: space-between;
-  padding: 6px 4px 0;
+  padding: 6px 6px 0;
   position: relative;
   width: 100%;
 }
 
 .card-rarity, .card-trunfo {
   align-items: center;
-  border-radius: 100%;
   display: flex;
   justify-content: center;
-  text-align: center;
-  width: 56px;
-  z-index: 5;
+}
+
+.card-trunfo {
+  padding-top: 4px;
 }
 
 .card-rarity img, .card-trunfo img {
-  width: 60px;
+  width: 54px;
+}
+
+.card-rarity p, .card-trunfo p {
+  display: none;
+}
+
+.rarity-text {
+  background-color: black;
+  font-family: Chakra Petch , sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  left: 2px;
+  padding: 0 0 2px 2px;
+  position: absolute;
+  top: 60px;
+  width: 65px;
+  z-index: 2;
+}
+
+.rarity-text:after {
+  border-right: 8px solid transparent;
+  border-top: 18px solid black;
+  content: '';
+  left: 65px;
+  position: absolute;
+  z-index: 2;
 }
 
 .card-header h2 {
@@ -51,13 +105,14 @@
   color: #eeff;
   font-family: Forbidden-Knowledge , sans-serif;
   font-size: 38px;
-  inline-size: 214px;
-  left: 56px;
+  inline-size: 247px;
+  left: 40px;
   overflow-wrap: break-word;
   position: absolute;
   text-align: center;
-  text-shadow: 2px 2px black;
-  top: 28px;
+  text-shadow: 4px 2px 4px black;
+  text-transform: uppercase;
+  top: 15px;
   z-index: 6;
 }
 
@@ -70,20 +125,14 @@
   width: 90%;
 }
 
-.noface-character {
-  height: 360px;
+.portrait, .user-character, .noface-character {
+  height: 375px;
+  line-height: 50vh;
   object-fit: contain;
   position: absolute;
-  width: 286px;
-  z-index: 1;
-}
-
-.portrait, .user-character {
-  height: 360px;
-  object-fit: contain;
-  position: absolute;
-  width: 286px;
-  z-index: 1;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
 }
 
 .card-attrs {
@@ -98,10 +147,12 @@
 .card-attrs li {
   align-items: center;
   background-color: #23192f;
-  border: 1px solid #d0cfcf;
+  border: 2px solid black;
   border-radius: 100%;
   display: flex;
+  font-family: Chakra Petch , sans-serif;
   font-size: 22px;
+  font-weight: 500;
   justify-content: center;
   position: relative;
   width: 50px;
@@ -111,68 +162,72 @@
 .card-attrs li img {
   height: 80%;
   position: absolute;
-  top: -22px;
+  top: -24px;
   width: 80%;
 }
 
 .card-description {
   align-items: flex-start;
-  background-color: #40355a;
-  border: 1px solid #bdc6d5;
+  background-color: #23192f;
+  border: 3px solid black;
   color: #eef;
   display: flex;
-  font-size: 14px;
-  height: 92px;
+  font-size: 13px;
+  height: 90px;
   width: 90%;
   z-index: 2;
 }
 
 .card-description p {
+  font-family: Chakra Petch , sans-serif;
+  font-weight: 500;
   inline-size: 100%;
   overflow-wrap: break-word;
-  padding: 6px;
+  padding: 4px;
   z-index: 6;
-}
-
-.card {
-  align-items: center;
-  background-color: #23192f;
-  border-radius: 8px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  height: 470px;
-  position: relative;
-  width: 330px;
 }
 
 @media screen and ( max-width : 679px ) {
 
+  .rarity-text {
+    font-size: 12px;
+    width: 62px;
+  }
+
   .card-container {
-    padding: 2rem;
+    padding: 24px;
   }
 
   .mold {
-    left: 4px;
-    top: -12px;
+    left: -1px;
+    top: -20px;
   }
 
   .mold img {
-    height: 560px;
-    width: 330px;
+    height: 563px;
+    width: 316px;
   }
 
   .card {
-    width: 270px;
+    width: 262px;
   }
 
   .card-header h2 {
-    left: 30px;
+    inline-size: 230px;
+    left: 20px;
+    top: 45px;
+  }
+
+  .card-rarity {
+    padding-left: 2px;
   }
 
   .card-description p {
-    padding: 2px;
+    font-size: 13px;
+    padding: 0 4px;
   }
 
+  .noface-character {
+    width: 260px;
+  }
 }

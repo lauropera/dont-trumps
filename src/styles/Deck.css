@@ -1,8 +1,10 @@
 .deck {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
-  width: 80%;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .deck .card {
@@ -10,17 +12,22 @@
   position: relative;
 }
 
-.deck-card {
+.deck-container {
   position: relative;
 }
 
-.deck .delete-button {
+.deck-container .delete-button {
+  border: none;
+  border-radius: 100%;
+  box-shadow: 1px 1px 10px black;
   cursor: pointer;
-  padding: 4px;
+  display: flex;
+  font-size: 20px;
+  padding: 6px;
   position: absolute;
-  right: 52px;
-  top: 130px;
-  z-index: 6;
+  right: 55px;
+  top: 230px;
+  z-index: 8;
 }
 
 @media screen and ( max-width : 679px ) {
@@ -30,6 +37,12 @@
   }
 
   .deck {
-    width: auto;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .deck-container .delete-button {
+    right: 36px;
+    top: 88px;
   }
 }

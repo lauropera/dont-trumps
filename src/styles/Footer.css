@@ -1,0 +1,24 @@
+footer {
+  align-items: center;
+  background-color: #23192f;
+  color: #e3e2ec;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 30px;
+  width: 100%;
+}
+
+footer p {
+  width: 70%;
+}
+
+a, a:visited {
+  color: #937dc2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

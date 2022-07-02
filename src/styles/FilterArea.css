@@ -1,5 +1,66 @@
-.filter-inputs {
+.filter-area {
+  align-items: center;
+  background-color: #23192f;
   display: flex;
-  flex-direction: column;
   gap: 12px;
+  padding: 12px 12px 14px;
+  position: relative;
+}
+
+.filter-area:before, .filter-area:after {
+  border-top: 65px solid #23192f;
+  content: '';
+  position: absolute;
+  z-index: 2;
+}
+
+.filter-area:before {
+  border-left: 50px solid transparent;
+  left: -50px;
+}
+
+.filter-area:after {
+  border-right: 50px solid transparent;
+  right: -50px;
+  z-index: 2;
+}
+
+.filter-area input, .filter-area select {
+  background-color: #593060;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 8px;
+  transition: 0.3s;
+}
+
+.filter-area input:focus {
+  outline: none;
+}
+
+.trunfo-filter {
+  cursor: pointer;
+}
+
+@media screen and ( max-width : 678px ) {
+
+  .filter-area {
+    flex-direction: column;
+    width: 75%;
+  }
+
+  .filter-area:before, .filter-area:after {
+    border-top: 147px solid #23192f;
+    top: 0;
+  }
+
+  .filter-name, .filter-rare {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .filter-name input, .filter-rare select {
+    width: 80%;
+  }
 }

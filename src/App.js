@@ -3,6 +3,7 @@ import Form from './components/Form';
 import Card from './components/Card';
 import FilterArea from './components/FilterArea';
 import Deck from './components/Deck';
+import Footer from './components/Footer';
 import './App.css';
 
 const INITIAL_STATE = {
@@ -12,7 +13,7 @@ const INITIAL_STATE = {
   cardAttr2: '0',
   cardAttr3: '0',
   cardImage: '',
-  cardRare: 'rarity-1',
+  cardRare: 'normal',
   cardTrunfo: false,
   isSaveButtonDisabled: true,
 };
@@ -85,11 +86,11 @@ class App extends React.Component {
 
   removeCard({ target }) {
     const { cardCollection } = this.state;
-    const card = cardCollection.find(({ cardName }) => cardName === target.id);
+    const { cardTrunfo } = cardCollection.find(({ cardName }) => cardName === target.id);
     this.setState({
       cardCollection: cardCollection
         .filter(({ cardName }) => cardName !== target.id),
-      hasTrunfo: !card,
+      hasTrunfo: !cardTrunfo,
     });
   }
 
@@ -98,7 +99,7 @@ class App extends React.Component {
       cardCollection, cardsByName, cardsByRarity, showTrunfoCard,
     } = this.state;
     return (
-      <div className="main-content">
+      <>
         <header className="game-header">
           <h1>{'Don\'t Trumps'}</h1>
         </header>
@@ -113,20 +114,21 @@ class App extends React.Component {
             <Card { ...this.state } />
           </div>
         </section>
-        <section className="cards-list">
+        <section className="card-filter-area">
           <FilterArea
             onInputChange={ this.onInputChange }
             filterTrunfo={ showTrunfoCard }
           />
-          <Deck
-            filterName={ cardsByName }
-            filterRarity={ cardsByRarity }
-            filterTrunfo={ showTrunfoCard }
-            cardList={ cardCollection }
-            removeCard={ this.removeCard }
-          />
         </section>
-      </div>
+        <Deck
+          filterName={ cardsByName }
+          filterRarity={ cardsByRarity }
+          filterTrunfo={ showTrunfoCard }
+          cardList={ cardCollection }
+          removeCard={ this.removeCard }
+        />
+        <Footer />
+      </>
     );
   }
 }
