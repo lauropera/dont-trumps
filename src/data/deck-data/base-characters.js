@@ -71,7 +71,7 @@ const defaultChars = [
     cardDescription:
       `Formerly the Shadow King, lately
       Maxwell finds himself reacquainted with life among the commonfolk.`,
-    cardAttr1: '36',
+    cardAttr1: '42',
     cardAttr2: '74',
     cardAttr3: '21',
     cardImage: maxwell,
@@ -95,7 +95,7 @@ const defaultChars = [
     cardDescription:
       `Wendy is a morose young lady
       with a sisterly bond so powerful, it transcends death itself.`,
-    cardAttr1: '41',
+    cardAttr1: '31',
     cardAttr2: '38',
     cardAttr3: '39',
     cardImage: wendy,
@@ -141,7 +141,7 @@ const defaultChars = [
     cardDescription:
       `At heart Wilson is truly a man of science.
       It's not in his nature to resist the call of the unknown`,
-    cardAttr1: '34',
+    cardAttr1: '37',
     cardAttr2: '69',
     cardAttr3: '38',
     cardImage: wilson,
