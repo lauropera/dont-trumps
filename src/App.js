@@ -90,8 +90,8 @@ class App extends React.Component {
     this.setState({
       cardCollection: cardCollection
         .filter(({ cardName }) => cardName !== target.id),
-      hasTrunfo: !cardTrunfo,
     });
+    if (cardTrunfo) this.setState({ hasTrunfo: false });
   }
 
   render() {
