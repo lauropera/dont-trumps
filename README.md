@@ -19,6 +19,11 @@ Vou continuar evoluindo ele com o tempo!
 * JavaScript
 * React.js
 
+
+# :iphone: Mobile
+​
+![Mobile Screenshot](./imgs/Mobile-Preview.png)
+
 # :camera: Screenshots
 
 ![PC Screenshot](./imgs/deck-screenshot1.png)
