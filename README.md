@@ -21,7 +21,7 @@ Vou continuar evoluindo ele com o tempo!
 
 
 # :iphone: Mobile
-​
+
 ![Mobile Screenshot](./imgs/Mobile-Preview.png)
 
 # :camera: Screenshots
@@ -31,3 +31,6 @@ Vou continuar evoluindo ele com o tempo!
 
 ## :heavy_check_mark: Nota
 ![Minha nota no projeto](./imgs/nota-projeto.png)
+
+## :copyright: Aviso de direitos autorais
+A franquia Don't Starve e seus personagens pertencem a Klei Entertainment, todos os direitos reservados. Esse projeto foi desenvolvido para fins de aprendizado, não possuindo nenhuma relação com a companhia.
