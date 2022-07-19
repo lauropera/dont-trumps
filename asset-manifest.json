@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dont-trumps/static/css/main.f352ca34.css",
-    "main.js": "/dont-trumps/static/js/main.a3c11656.js",
+    "main.css": "/dont-trumps/static/css/main.04b72134.css",
+    "main.js": "/dont-trumps/static/js/main.8dfdb379.js",
     "static/media/webber_nature.png": "/dont-trumps/static/media/webber_nature.57849e5645c193975f60.png",
     "static/media/wendy_nostalgic.png": "/dont-trumps/static/media/wendy_nostalgic.b56e31ce05f554645050.png",
     "static/media/Eye_of_Terror.png": "/dont-trumps/static/media/Eye_of_Terror.03d1e8601a99f7597a37.png",
@@ -60,11 +60,11 @@
     "static/media/Forbidden-Knowledge.ttf": "/dont-trumps/static/media/Forbidden-Knowledge.41864b6d07105ac33801.ttf",
     "static/media/mold.png": "/dont-trumps/static/media/mold.63748d822cee7afb9895.png",
     "index.html": "/dont-trumps/index.html",
-    "main.f352ca34.css.map": "/dont-trumps/static/css/main.f352ca34.css.map",
-    "main.a3c11656.js.map": "/dont-trumps/static/js/main.a3c11656.js.map"
+    "main.04b72134.css.map": "/dont-trumps/static/css/main.04b72134.css.map",
+    "main.8dfdb379.js.map": "/dont-trumps/static/js/main.8dfdb379.js.map"
   },
   "entrypoints": [
-    "static/css/main.f352ca34.css",
-    "static/js/main.a3c11656.js"
+    "static/css/main.04b72134.css",
+    "static/js/main.8dfdb379.js"
   ]
 }
