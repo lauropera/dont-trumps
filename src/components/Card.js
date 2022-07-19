@@ -89,7 +89,7 @@ class Card extends React.Component {
                   data-testid={ this.setTestId('image-card') }
                   className="user-character"
                   src={ cardImage }
-                  alt={ cardName }
+                  alt={ `${cardName} preview` }
                 />
               </>
             )}
