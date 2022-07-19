@@ -6,23 +6,10 @@ import Deck from './components/Deck';
 import Footer from './components/Footer';
 import './App.css';
 
-const INITIAL_STATE = {
-  cardName: '',
-  cardDescription: '',
-  cardAttr1: '0',
-  cardAttr2: '0',
-  cardAttr3: '0',
-  cardImage: '',
-  cardRare: 'normal',
-  cardTrunfo: false,
-  isSaveButtonDisabled: true,
-};
-
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      ...INITIAL_STATE,
       hasTrunfo: false,
       cardCollection: [],
       cardsByName: '',
@@ -63,7 +50,6 @@ class App extends React.Component {
     };
     if (!hasTrunfo) this.setState({ hasTrunfo: cardTrunfo });
     this.setState((prevState) => ({
-      ...INITIAL_STATE,
       cardCollection: [...prevState.cardCollection, cardInfo],
     }));
   }
