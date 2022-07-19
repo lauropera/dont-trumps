@@ -49,15 +49,6 @@
   background-size: cover;
 }
 
-.card-filter-area {
-  color: white;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0 20px 20px;
-  width: 100%;
-}
-
 @media screen and ( max-width : 679px ) {
 
   .form-new-card {

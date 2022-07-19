@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
-import App from '../App';
+import NewCardForm from '../pages/NewCardForm';
 
 describe('Creating a new card using the form', () => {
-  beforeEach(() => render(<App />));
+  beforeEach(() => render(<NewCardForm handleSubmit={() => {}} />));
   it('Should have the "save" button disabled by default', () => {
     const saveBtn = screen.getByRole('button', { name: /salvar/i });
 
@@ -107,9 +107,6 @@ describe('Creating a new card using the form', () => {
   it('Should enable the "save" button after filling the inputs', () => {
     userEvent.type(screen.getByLabelText(/nome/i), 'name');
     userEvent.type(screen.getByLabelText(/descrição/i), 'desc');
-    userEvent.type(screen.getByLabelText(/ataque/i), '1');
-    userEvent.type(screen.getByLabelText(/inteligência/i), '1');
-    userEvent.type(screen.getByLabelText(/defesa/i), '1');
     userEvent.type(screen.getByLabelText(/imagem/i), 'url');
     expect(screen.getByRole('button', { name: /salvar/i })).toBeEnabled();
   });

@@ -1,3 +1,12 @@
+.card-filter-area {
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 20px 20px;
+  width: 100%;
+}
+
 .filter-area {
   align-items: center;
   background-color: #23192f;
