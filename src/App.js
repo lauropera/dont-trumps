@@ -1,6 +1,6 @@
 import React from 'react';
-import Form from './components/Form';
-import Card from './components/Card';
+import Header from './components/Header';
+import NewCardForm from './pages/NewCardForm';
 import FilterArea from './components/FilterArea';
 import Deck from './components/Deck';
 import Footer from './components/Footer';
@@ -29,24 +29,28 @@ class App extends React.Component {
       cardsByRarity: 'todas',
       showTrunfoCard: false,
     };
-
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
-    this.validateCard = this.validateCard.bind(this);
-    this.removeCard = this.removeCard.bind(this);
   }
 
-  onInputChange({ target }) {
+  onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({ [name]: value }, () => this.validateCard());
+    this.setState({ [name]: value });
   }
 
-  onSaveButtonClick() {
+  handleSubmit = (event, card) => {
+    event.preventDefault();
+    event.target.reset();
     const {
-      cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo,
-    } = this.state;
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      hasTrunfo,
+    } = card;
     const cardInfo = {
       cardName,
       cardDescription,
@@ -64,62 +68,38 @@ class App extends React.Component {
     }));
   }
 
-  validateCard() {
-    const {
-      cardName, cardDescription, cardImage,
-      cardAttr1, cardAttr2, cardAttr3,
-    } = this.state;
-    const minValue = 0;
-    const maxValue = 90;
-    const maxSum = 210;
-    const conditions = [
-      cardName.length > minValue,
-      cardDescription.length > minValue,
-      cardImage.length > minValue,
-      cardAttr1 >= minValue && cardAttr1 <= maxValue,
-      cardAttr2 >= minValue && cardAttr2 <= maxValue,
-      cardAttr3 >= minValue && cardAttr3 <= maxValue,
-      Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= maxSum,
-    ];
-    this.setState({ isSaveButtonDisabled: !conditions.every((con) => con) });
-  }
-
-  removeCard({ target }) {
+  removeCard = ({ target }) => {
     const { cardCollection } = this.state;
-    const { cardTrunfo } = cardCollection.find(({ cardName }) => cardName === target.id);
-    this.setState({
-      cardCollection: cardCollection
-        .filter(({ cardName }) => cardName !== target.id),
-    });
+    const { cardTrunfo } = cardCollection.find(
+      ({ cardName }) => cardName === target.id,
+    );
     if (cardTrunfo) this.setState({ hasTrunfo: false });
+    this.setState({
+      cardCollection: cardCollection.filter(
+        ({ cardName }) => cardName !== target.id,
+      ),
+    });
   }
 
   render() {
     const {
-      cardCollection, cardsByName, cardsByRarity, showTrunfoCard,
+      hasTrunfo,
+      cardCollection,
+      cardsByName,
+      cardsByRarity,
+      showTrunfoCard,
     } = this.state;
     return (
       <>
-        <header className="game-header">
-          <h1>{'Don\'t Trumps'}</h1>
-        </header>
-        <section className="new-card-area">
-          <h2>Criar carta</h2>
-          <div className="form-new-card">
-            <Form
-              { ...this.state }
-              onInputChange={ this.onInputChange }
-              onSaveButtonClick={ this.onSaveButtonClick }
-            />
-            <Card { ...this.state } />
-          </div>
-        </section>
-        <section className="card-filter-area">
-          <FilterArea
-            onInputChange={ this.onInputChange }
-            filterTrunfo={ showTrunfoCard }
-          />
-        </section>
+        <Header />
+        <NewCardForm
+          handleSubmit={ this.handleSubmit }
+          hasTrunfo={ hasTrunfo }
+        />
+        <FilterArea
+          onInputChange={ this.onInputChange }
+          filterTrunfo={ showTrunfoCard }
+        />
         <Deck
           filterName={ cardsByName }
           filterRarity={ cardsByRarity }

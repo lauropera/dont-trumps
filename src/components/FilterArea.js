@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { bool, func } from 'prop-types';
 import '../styles/FilterArea.css';
 
-class FilterArea extends React.Component {
-  render() {
-    const { onInputChange, filterTrunfo } = this.props;
-    return (
-      <section className="filter-area">
+function FilterArea(props) {
+  const { onInputChange, filterTrunfo } = props;
+  return (
+    <section className="card-filter-area">
+      <div className="filter-area">
         <label htmlFor="name" className="filter-name">
           <input
             id="name"
@@ -43,14 +43,14 @@ class FilterArea extends React.Component {
           {' '}
           Super Trybe Trunfo
         </label>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
 }
 
 FilterArea.propTypes = {
-  onInputChange: PropTypes.func.isRequired,
-  filterTrunfo: PropTypes.bool.isRequired,
+  onInputChange: func.isRequired,
+  filterTrunfo: bool.isRequired,
 };
 
 export default FilterArea;
