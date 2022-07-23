@@ -10,7 +10,7 @@ function NewCardForm(props) {
     <section className="new-card-area">
       <h2>Criar carta</h2>
       <div className="form-new-card">
-        <Form { ...form } />
+        <Form />
         <Card { ...form } />
       </div>
     </section>

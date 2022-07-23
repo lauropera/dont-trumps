@@ -16,7 +16,12 @@ const INITIAL_STATE = {
   cardCollection: [],
 };
 
+const removeCard = (cards, toRemove) => (
+  cards.filter((card) => card !== toRemove)
+);
+
 function customCard(state = INITIAL_STATE, action) {
+  const { cardCollection } = state;
   switch (action.type) {
   case INPUT_CHANGE:
     return {
@@ -32,17 +37,21 @@ function customCard(state = INITIAL_STATE, action) {
       form: { ...INITIAL_STATE.form },
       hasTrunfo:
           state.form.cardTrunfo
-          || state.cardCollection.some(({ cardTrunfo }) => cardTrunfo),
-      cardCollection: [...state.cardCollection, { ...state.form }],
+          || cardCollection.some(({ cardTrunfo }) => cardTrunfo),
+      cardCollection: [...cardCollection, { ...state.form }],
     };
 
   case REMOVE_CARD:
+    if (action.payload.cardTrunfo) {
+      return {
+        ...state,
+        hasTrunfo: false,
+        cardCollection: removeCard(cardCollection, action.payload),
+      };
+    }
     return {
       ...state,
-      cardCollection: state.cardCollection
-        .filter(({ cardName }) => cardName !== action.payload),
-      hasTrunfo: state.cardCollection
-        .some(({ cardTrunfo }) => cardTrunfo),
+      cardCollection: removeCard(cardCollection, action.payload),
     };
 
   default:

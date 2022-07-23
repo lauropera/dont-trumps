@@ -44,7 +44,6 @@ function Form(props) {
     cardAttr3, cardImage, cardRare, cardTrunfo,
     hasTrunfo, onInputChange,
   } = props;
-
   return (
     <form
       className="newCard-form"
@@ -196,14 +195,12 @@ function Form(props) {
 }
 
 const mapStateToProps = (state) => ({
+  ...state.customCard.form,
   hasTrunfo: state.customCard.hasTrunfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onInputChange: ({ target }) => {
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    dispatch(inputChangeAction({ [target.name]: value }));
-  },
+  onInputChange: (e) => dispatch(inputChangeAction(e)),
   newCard: (newCard) => dispatch(newCardAction(newCard)),
 });
 

@@ -9,7 +9,10 @@ const INITIAL_STATE = {
 function filterArea(state = INITIAL_STATE, action) {
   switch (action.type) {
   case FILTER_CHANGE:
-    return state;
+    return {
+      ...state,
+      ...action.payload,
+    };
   default:
     return state;
   }
