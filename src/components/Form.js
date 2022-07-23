@@ -1,37 +1,54 @@
 import React from 'react';
 import { bool, func, string } from 'prop-types';
 import { FaLink } from 'react-icons/fa';
+import { connect } from 'react-redux';
+import { inputChangeAction, newCardAction } from '../redux/actions';
 import '../styles/Form.css';
 
-export default function Form(props) {
+function Form(props) {
   function remainingAttr() {
     const { cardAttr1, cardAttr2, cardAttr3 } = props;
     const maxPoints = 200;
     return maxPoints - cardAttr1 - cardAttr2 - cardAttr3;
   }
 
+  function validateCard() {
+    const {
+      cardName, cardDescription, cardImage,
+      cardAttr1, cardAttr2, cardAttr3,
+    } = props;
+    const minValue = 0;
+    const maxValue = 90;
+    const maxSum = 210;
+    const conditions = [
+      cardName.length > minValue,
+      cardDescription.length > minValue,
+      cardImage.length > minValue,
+      cardAttr1 >= minValue && cardAttr1 <= maxValue,
+      cardAttr2 >= minValue && cardAttr2 <= maxValue,
+      cardAttr3 >= minValue && cardAttr3 <= maxValue,
+      Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= maxSum,
+    ];
+    return !conditions.every((con) => con);
+  }
+
+  function handleSubmit(e) {
+    const { newCard } = props;
+    e.preventDefault();
+    e.target.reset();
+    newCard();
+  }
+
   const {
-    cardName,
-    cardDescription,
-    cardAttr1,
-    cardAttr2,
-    cardAttr3,
-    cardImage,
-    cardRare,
-    cardTrunfo,
-    isSaveButtonDisabled,
-    hasTrunfo,
-    onInputChange,
-    handleSubmit,
-    resetState,
+    cardName, cardDescription, cardAttr1, cardAttr2,
+    cardAttr3, cardImage, cardRare, cardTrunfo,
+    hasTrunfo, onInputChange,
   } = props;
+
   return (
     <form
       className="newCard-form"
-      onSubmit={ (e) => {
-        resetState();
-        handleSubmit(e, { ...props });
-      } }
+      onSubmit={ handleSubmit }
     >
       <div>
         <label htmlFor="name-input" className="input-area name-area">
@@ -170,13 +187,25 @@ export default function Form(props) {
         id="save-button"
         name="isSaveButtonDisabled"
         className="savecard-btn"
-        disabled={ isSaveButtonDisabled }
+        disabled={ validateCard() }
       >
         Salvar
       </button>
     </form>
   );
 }
+
+const mapStateToProps = (state) => ({
+  hasTrunfo: state.customCard.hasTrunfo,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onInputChange: ({ target }) => {
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    dispatch(inputChangeAction({ [target.name]: value }));
+  },
+  newCard: (newCard) => dispatch(newCardAction(newCard)),
+});
 
 Form.defaultProps = {
   cardName: '',
@@ -187,8 +216,6 @@ Form.defaultProps = {
   cardImage: '',
   cardRare: 'normal',
   cardTrunfo: false,
-  hasTrunfo: false,
-  isSaveButtonDisabled: true,
 };
 
 Form.propTypes = {
@@ -200,9 +227,9 @@ Form.propTypes = {
   cardImage: string,
   cardRare: string,
   cardTrunfo: bool,
-  hasTrunfo: bool,
-  isSaveButtonDisabled: bool,
+  hasTrunfo: bool.isRequired,
   onInputChange: func.isRequired,
-  handleSubmit: func.isRequired,
-  resetState: func.isRequired,
+  newCard: func.isRequired,
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

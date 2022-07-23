@@ -10,7 +10,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
+    "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -45,10 +48,10 @@
     "eslint": "^7.32.0",
     "eslint-config-trybe-frontend": "^1.2.3",
     "eslint-plugin-sonarjs": "^0.10.0",
+    "gh-pages": "^4.0.0",
     "prop-types": "^15.7.2",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^20.0.0",
-    "stylelint-order": "4.1.0",
-    "gh-pages": "^4.0.0"
+    "stylelint-order": "4.1.0"
   }
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import { arrayOf, bool, func, shape, string } from 'prop-types';
 import { FaTrash } from 'react-icons/fa';
-import deckArr from '../data/deck-data';
+import { connect } from 'react-redux';
+// import deckArr from '../data/deck-data';
 import Card from './Card';
 import '../styles/Deck.css';
+import { removeCardAction } from '../redux/actions';
 
-export default function Deck(props) {
+function Deck(props) {
   function applyFilters(deck) {
     const { filterTrunfo, filterName, filterRarity } = props;
     return deck.filter(({ cardName, cardRare, cardTrunfo }) => {
@@ -34,11 +36,11 @@ export default function Deck(props) {
           </button>
         </div>
       ))}
-      {applyFilters(deckArr).map((card) => (
+      {/* {applyFilters(deckArr).map((card) => (
         <div key={ card.cardName } className="deck-container">
           <Card { ...card } customCard />
         </div>
-      ))}
+      ))} */}
     </main>
   );
 }
@@ -61,3 +63,13 @@ Deck.propTypes = {
   ).isRequired,
   removeCard: func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  cardList: state.customCard.cardCollection,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  removeCard: (e) => dispatch(removeCardAction(e.target.id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Deck);

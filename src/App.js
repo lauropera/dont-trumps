@@ -10,8 +10,6 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      hasTrunfo: false,
-      cardCollection: [],
       cardsByName: '',
       cardsByRarity: 'todas',
       showTrunfoCard: false,
@@ -24,53 +22,8 @@ class App extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit = (event, card) => {
-    event.preventDefault();
-    event.target.reset();
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-      hasTrunfo,
-    } = card;
-    const cardInfo = {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    };
-    if (!hasTrunfo) this.setState({ hasTrunfo: cardTrunfo });
-    this.setState((prevState) => ({
-      cardCollection: [...prevState.cardCollection, cardInfo],
-    }));
-  }
-
-  removeCard = ({ target }) => {
-    const { cardCollection } = this.state;
-    const { cardTrunfo } = cardCollection.find(
-      ({ cardName }) => cardName === target.id,
-    );
-    if (cardTrunfo) this.setState({ hasTrunfo: false });
-    this.setState({
-      cardCollection: cardCollection.filter(
-        ({ cardName }) => cardName !== target.id,
-      ),
-    });
-  }
-
   render() {
     const {
-      hasTrunfo,
-      cardCollection,
       cardsByName,
       cardsByRarity,
       showTrunfoCard,
@@ -78,10 +31,7 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <NewCardForm
-          handleSubmit={ this.handleSubmit }
-          hasTrunfo={ hasTrunfo }
-        />
+        <NewCardForm />
         <FilterArea
           onInputChange={ this.onInputChange }
           filterTrunfo={ showTrunfoCard }
@@ -90,8 +40,6 @@ class App extends React.Component {
           filterName={ cardsByName }
           filterRarity={ cardsByRarity }
           filterTrunfo={ showTrunfoCard }
-          cardList={ cardCollection }
-          removeCard={ this.removeCard }
         />
         <Footer />
       </>
