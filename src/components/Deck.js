@@ -1,11 +1,13 @@
 import React from 'react';
 import { arrayOf, bool, func, shape, string } from 'prop-types';
 import { FaTrash } from 'react-icons/fa';
+import { connect } from 'react-redux';
+import { removeCardAction } from '../redux/actions';
 import deckArr from '../data/deck-data';
 import Card from './Card';
 import '../styles/Deck.css';
 
-export default function Deck(props) {
+function Deck(props) {
   function applyFilters(deck) {
     const { filterTrunfo, filterName, filterRarity } = props;
     return deck.filter(({ cardName, cardRare, cardTrunfo }) => {
@@ -28,7 +30,7 @@ export default function Deck(props) {
             type="button"
             data-testid="delete-button"
             className="delete-button"
-            onClick={ removeCard }
+            onClick={ () => removeCard(card) }
           >
             <FaTrash pointerEvents="none" />
           </button>
@@ -61,3 +63,16 @@ Deck.propTypes = {
   ).isRequired,
   removeCard: func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  cardList: state.customCard.cardCollection,
+  filterName: state.filterArea.cardsByName,
+  filterRarity: state.filterArea.cardsByRarity,
+  filterTrunfo: state.filterArea.showTrunfoCard,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  removeCard: (card) => dispatch(removeCardAction(card)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Deck);
