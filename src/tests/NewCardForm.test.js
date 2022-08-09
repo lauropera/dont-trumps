@@ -31,7 +31,7 @@ describe('Creating a new card using the form', () => {
 
   it('Should render the typed description', () => {
     const descInput = screen.getByLabelText(/descrição/i);
-    
+
     userEvent.type(descInput, 'desc');
     expect(descInput).toHaveValue('desc');
 
