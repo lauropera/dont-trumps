@@ -1,0 +1,40 @@
+.Game-Container {
+  height: 100vh;
+}
+
+.Game-Container, .Game {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Game {
+  justify-content: center;
+}
+
+.Game-Cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.Game-Card {
+  cursor: pointer;
+}
+
+.Game-Attr {
+  position: absolute;
+  z-index: 1000;
+}
+
+.Hide {
+  top: -100vh;
+}
+
+.Hide-Card {
+  display: none;
+}
+
+.Select-Attr {
+  top: 50%;
+}
