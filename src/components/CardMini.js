@@ -14,8 +14,9 @@ import defIcon from '../data/card-images/items/def_points_icon.png';
 import intIcon from '../data/card-images/items/int_points_icon.png';
 
 import '../styles/Card.css';
+import '../styles/CardMini.css';
 
-function Card(props) {
+function CardMini(props) {
   function setCardRarity(rarityId) {
     switch (rarityId) {
     case 'raro':
@@ -45,21 +46,21 @@ function Card(props) {
     cardAttr3,
     cardRare,
     cardTrunfo,
+    turnResult,
   } = props;
   return (
-    <section className="card-container">
-      <div className="mold">
+    <section
+      className={ `card-container ${turnResult ? 'Winner-Card' : 'Loser-Card'}` }
+    >
+      <div className="small-mold">
         <img src={ cardMold } alt="Moldura" />
       </div>
-      <div className="card">
-        <header className="card-header">
+      <div className="small-card">
+        <header className="small-card-header">
           <div className="card-rarity">
             <img src={ setCardRarity(cardRare) } alt={ cardRare } />
           </div>
-          <p
-            data-testid={ setTestId('rare-card') }
-            className="rarity-text"
-          >
+          <p data-testid={ setTestId('rare-card') } className="small-rarity-text">
             {cardRare}
           </p>
           <h2 data-testid={ setTestId('name-card') }>{cardName}</h2>
@@ -70,32 +71,32 @@ function Card(props) {
             <img src={ isTrunfo(cardTrunfo) } alt="Super Trunfo" />
           </div>
         </header>
-        <div className="background-noise" />
-        <div className="card-image">
+        <div className="small-background-noise" />
+        <div className="small-card-image">
           {cardImage === '' ? (
             <img
               data-testid={ setTestId('image-card') }
               src={ noImageCharacter }
               alt="Sem rosto"
-              className="noface-character"
+              className="small-noface-character"
             />
           ) : (
             <>
               <img
                 src={ portraitCharacter }
                 alt="Moldura"
-                className="portrait"
+                className="small-portrait"
               />
               <img
                 data-testid={ setTestId('image-card') }
-                className="user-character"
+                className="small-user-character"
                 src={ cardImage }
                 alt={ `${cardName} preview` }
               />
             </>
           )}
         </div>
-        <ul className="card-attrs">
+        <ul className="small-card-attrs">
           <li data-testid={ setTestId('attr1-card') }>
             {cardAttr1}
             <img src={ atkIcon } alt="Icone de lança" />
@@ -109,17 +110,15 @@ function Card(props) {
             <img src={ defIcon } alt="Icone de Livro" />
           </li>
         </ul>
-        <div className="card-description">
-          <p data-testid={ setTestId('description-card') }>
-            {cardDescription}
-          </p>
+        <div className="small-card-description">
+          <p data-testid={ setTestId('description-card') }>{cardDescription}</p>
         </div>
       </div>
     </section>
   );
 }
 
-Card.defaultProps = {
+CardMini.defaultProps = {
   cardName: '',
   cardDescription: '',
   cardAttr1: '0',
@@ -129,9 +128,10 @@ Card.defaultProps = {
   cardRare: '',
   cardTrunfo: false,
   customCard: false,
+  turnResult: false,
 };
 
-Card.propTypes = {
+CardMini.propTypes = {
   cardName: string,
   cardDescription: string,
   cardAttr1: string,
@@ -141,6 +141,7 @@ Card.propTypes = {
   cardRare: string,
   cardTrunfo: bool,
   customCard: bool,
+  turnResult: bool,
 };
 
-export default Card;
+export default CardMini;

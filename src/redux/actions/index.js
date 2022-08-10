@@ -5,6 +5,7 @@ export const REMOVE_CARD = 'REMOVE_CARD';
 export const SAVE_CARDS = 'SAVE_CARDS';
 export const BATTLE_TYPE = 'BATTLE_TYPE';
 export const START_TURN = 'START_TURN';
+export const BATTLE = 'BATTLE';
 export const NEXT_TURN = 'RESET_TYPE';
 
 export const inputChangeAction = ({ target }) => {
@@ -46,3 +47,8 @@ export const setBattleAttr = (payload) => ({
 export const startTurn = () => ({ type: START_TURN });
 
 export const nextTurn = () => ({ type: NEXT_TURN });
+
+export const startBattle = (payload) => ({
+  type: BATTLE,
+  payload,
+});

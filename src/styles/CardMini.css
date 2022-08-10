@@ -1,0 +1,152 @@
+.small-mold {
+  left: 18px;
+  position: absolute;
+  top: 15px;
+  z-index: 2;
+}
+
+.small-mold img {
+  height: 430px;
+  width: 280px;
+}
+
+.small-card {
+  align-items: center;
+  background-color: #23192f;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 360px;
+  overflow: hidden;
+  padding-bottom: 8px;
+  position: relative;
+  width: 231px;
+}
+
+.small-card-header {
+  background-color: #23192f;
+  border-bottom: 4px solid black;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  padding: 4px 4px 0;
+  position: relative;
+  width: 100%;
+}
+
+.small-rarity-text {
+  background-color: black;
+  cursor: default;
+  font-family: Chakra Petch , sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  left: 1px;
+  padding: 0 0 2px 2px;
+  position: absolute;
+  text-align: left;
+  top: 50px;
+  width: 65px;
+  z-index: 2;
+}
+
+.small-card-header h2 {
+  color: #eeff;
+  cursor: default;
+  font-family: Forbidden-Knowledge , sans-serif;
+  font-size: 30px;
+  inline-size: 90%;
+  left: 10px;
+  overflow-wrap: break-word;
+  position: absolute;
+  text-align: center;
+  text-shadow: 4px 2px 4px black;
+  text-transform: uppercase;
+  top: 12px;
+  z-index: 6;
+}
+
+.small-background-noise {
+  background-image: url('../data/card-images/noise.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 20px 6px #23192f;
+  height: 309px;
+  opacity: 0.6;
+  position: absolute;
+  top: 50px;
+  width: 230px;
+  z-index: 1;
+}
+
+.small-card-image {
+  align-items: center;
+  display: flex;
+  height: 240px;
+  justify-content: center;
+  position: relative;
+  width: 90%;
+}
+
+.small-portrait, .small-user-character, .small-noface-character {
+  height: 266px;
+  line-height: 50vh;
+  object-fit: contain;
+  position: absolute;
+  text-align: center;
+  width: 220px;
+  z-index: 2;
+}
+
+.small-card-attrs {
+  display: flex;
+  height: 48px;
+  justify-content: space-evenly;
+  list-style: none;
+  width: 90%;
+  z-index: 3;
+}
+
+.small-card-attrs li {
+  align-items: center;
+  background-color: #23192f;
+  border: 2px solid black;
+  border-radius: 100%;
+  cursor: default;
+  display: flex;
+  font-family: Chakra Petch , sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+  position: relative;
+  width: 38px;
+  z-index: 2;
+}
+
+.small-card-attrs li img {
+  height: 34px;
+  position: absolute;
+  top: -25px;
+  width: 34px;
+}
+
+.small-card-description {
+  align-items: flex-start;
+  background-color: #23192f;
+  border: 2px solid black;
+  color: #eef;
+  display: flex;
+  font-size: 11px;
+  height: 80px;
+  padding: 2px;
+  text-align: left;
+  width: 90%;
+  z-index: 2;
+}
+
+.small-card-description p {
+  cursor: default;
+}

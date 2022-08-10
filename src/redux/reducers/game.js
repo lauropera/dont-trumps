@@ -1,9 +1,19 @@
-import { BATTLE_TYPE, SAVE_CARDS, START_TURN, NEXT_TURN } from '../actions';
+import {
+  BATTLE_TYPE,
+  SAVE_CARDS,
+  START_TURN,
+  NEXT_TURN,
+  BATTLE,
+} from '../actions';
 
 const INITIAL_STATE = {
   turn: 1,
   attribute: '',
   turnInProgress: false,
+  duelStatus: {
+    wins: 0,
+    loses: 0,
+  },
 };
 
 const randomAttr = () => {
@@ -12,6 +22,9 @@ const randomAttr = () => {
 };
 
 function game(state = INITIAL_STATE, action) {
+  const {
+    duelStatus: { wins, loses },
+  } = state;
   switch (action.type) {
   case SAVE_CARDS:
     return {
@@ -27,6 +40,14 @@ function game(state = INITIAL_STATE, action) {
     return {
       ...state,
       turnInProgress: true,
+    };
+  case BATTLE:
+    return {
+      ...state,
+      duelStatus: {
+        wins: action.payload ? wins + 1 : wins,
+        loses: !action.payload ? loses + 1 : loses,
+      },
     };
   case NEXT_TURN:
     return {
