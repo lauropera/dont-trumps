@@ -1,19 +1,26 @@
-import { number } from 'prop-types';
+import { func, number, shape } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { resetGame } from '../redux/actions';
+import '../styles/HomeAndResults.css';
 
 class Results extends Component {
+  handleClick = () => {
+    const { history, reset } = this.props;
+    reset();
+    history.push('/game');
+  }
+
   render() {
     const { wins, loses } = this.props;
     return (
-      <main>
+      <main className="Results-Container">
         <h1>Resultados</h1>
         <div>
           <p>{`${wins === 1 ? 'Vitória' : 'Vitórias'}: ${wins}`}</p>
           <p>{`${loses === 1 ? 'Derrota' : 'Derrotas'}: ${loses}`}</p>
         </div>
-        <Link to="/game">Jogar novamente</Link>
+        <button type="button" onClick={ this.handleClick }>Jogar novamente</button>
       </main>
     );
   }
@@ -24,6 +31,10 @@ const mapStateToProps = (state) => ({
   loses: state.game.duelStatus.loses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  reset: () => dispatch(resetGame()),
+});
+
 Results.defaultProps = {
   wins: 0,
   loses: 0,
@@ -32,6 +43,8 @@ Results.defaultProps = {
 Results.propTypes = {
   wins: number,
   loses: number,
+  reset: func.isRequired,
+  history: shape({ push: func }).isRequired,
 };
 
-export default connect(mapStateToProps)(Results);
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

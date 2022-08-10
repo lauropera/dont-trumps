@@ -1,0 +1,13 @@
+.Home-Container, .Results-Container {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.Links-Container {
+  display: flex;
+  flex-flow: column nowrap;
+}

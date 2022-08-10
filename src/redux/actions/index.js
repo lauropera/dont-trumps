@@ -7,6 +7,7 @@ export const BATTLE_TYPE = 'BATTLE_TYPE';
 export const START_TURN = 'START_TURN';
 export const BATTLE = 'BATTLE';
 export const NEXT_TURN = 'RESET_TYPE';
+export const RESET_GAME = 'RESET_GAME';
 
 export const inputChangeAction = ({ target }) => {
   const { name, type, checked } = target;
@@ -52,3 +53,5 @@ export const startBattle = (payload) => ({
   type: BATTLE,
   payload,
 });
+
+export const resetGame = () => ({ type: RESET_GAME });

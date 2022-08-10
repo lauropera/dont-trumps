@@ -4,6 +4,7 @@ import {
   START_TURN,
   NEXT_TURN,
   BATTLE,
+  RESET_GAME,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -56,6 +57,8 @@ function game(state = INITIAL_STATE, action) {
       turnInProgress: false,
       turn: state.turn + 1,
     };
+  case RESET_GAME:
+    return { ...INITIAL_STATE };
   default:
     return {
       ...state,
