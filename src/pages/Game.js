@@ -47,8 +47,8 @@ class Game extends Component {
       {
         playerChoice: card,
         cpuChoice: cpuCard,
-        cpuDeck: this.removeCard(cpuDeck, card),
-        playerDeck: this.removeCard(playerDeck, cpuCard),
+        cpuDeck: this.removeCard(cpuDeck, cpuCard),
+        playerDeck: this.removeCard(playerDeck, card),
       },
       () => {
         const { startTurn } = this.props;

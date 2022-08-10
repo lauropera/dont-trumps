@@ -41,7 +41,7 @@
   width: 100%;
 }
 
-.card-filter-area, .deck {
+.card-filter-area, .deck, .Home-Container, .Results-Container {
   background-attachment: fixed;
   background-image: url('./data/card-images/background.jpg');
   background-position: center;
