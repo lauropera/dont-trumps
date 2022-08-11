@@ -16,9 +16,14 @@ import intIcon from '../data/card-images/items/int_points_icon.png';
 import '../styles/Card.css';
 // import '../styles/CardMini.css';
 import '../styles/Mini.css';
+import '../styles/CardFocus.css';
 
-function CardMini(props) {
-  function setCardRarity(rarityId) {
+class CardMini extends React.Component {
+  state = {
+    hover: false,
+  };
+
+  setCardRarity = (rarityId) => {
     switch (rarityId) {
     case 'raro':
       return rarityRare;
@@ -27,89 +32,105 @@ function CardMini(props) {
     default:
       return rarityNormal;
     }
-  }
+  };
 
-  function setTestId(id) {
-    const { customCard } = props;
+  setTestId = (id) => {
+    const { customCard } = this.props;
     return customCard ? '' : id;
-  }
+  };
 
-  function isTrunfo(trunfoInfo) {
-    return trunfoInfo ? trunfoCard : notTrunfoCard;
-  }
+  isTrunfo = (trunfoInfo) => (trunfoInfo ? trunfoCard : notTrunfoCard);
 
-  const {
-    cardName,
-    cardImage,
-    cardAttr1,
-    cardAttr2,
-    cardAttr3,
-    cardRare,
-    cardTrunfo,
-    turnResult,
-  } = props;
-  return (
-    <section
-      className={ `card-container-mini ${turnResult ? 'Winner-Card' : 'Loser-Card'}` }
-    >
-      <div className="small-mold">
-        <img src={ cardMold } alt="Moldura" />
-      </div>
-      <div className="small-card">
-        <header className="small-card-header">
-          <div className="card-rarity">
-            <img src={ setCardRarity(cardRare) } alt={ cardRare } />
-          </div>
-          <h2 data-testid={ setTestId('name-card') }>{cardName}</h2>
-          <div className="card-trunfo">
-            {cardTrunfo && (
-              <p data-testid={ setTestId('trunfo-card') }>Super Trunfo</p>
-            )}
-            <img src={ isTrunfo(cardTrunfo) } alt="Super Trunfo" />
-          </div>
-        </header>
-        <div className="small-background-noise" />
-        <div className="small-card-image">
-          {cardImage === '' ? (
-            <img
-              data-testid={ setTestId('image-card') }
-              src={ noImageCharacter }
-              alt="Sem rosto"
-              className="small-noface-character"
-            />
-          ) : (
-            <>
-              <img
-                src={ portraitCharacter }
-                alt="Moldura"
-                className="small-portrait"
-              />
-              <img
-                data-testid={ setTestId('image-card') }
-                className="small-user-character"
-                src={ cardImage }
-                alt={ `${cardName} preview` }
-              />
-            </>
-          )}
+  onMouseHover = () => this.setState({ hover: true });
+
+  onMouseOut = () => this.setState({ hover: false });
+
+  render() {
+    const {
+      cardName,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+      turnResult,
+    } = this.props;
+    const { hover } = this.state;
+    return (
+      <section
+        className={ `card-container-mini
+          ${turnResult ? 'Winner-Card' : 'Loser-Card'}` }
+        // onMouseOver={ this.onMouseHover }
+        // onFocus={ this.onMouseHover }
+        // onMouseOut={ this.onMouseOut }
+        // onBlur={ this.onMouseOut }
+      >
+        <div className={ `small-mold ${hover ? 'Focus-small-mold' : ''}` }>
+          <img src={ cardMold } alt="Moldura" />
         </div>
-        <ul className="small-card-attrs">
-          <li data-testid={ setTestId('attr1-card') }>
-            {cardAttr1}
-            <img src={ atkIcon } alt="Icone de lança" />
-          </li>
-          <li data-testid={ setTestId('attr2-card') }>
-            {cardAttr2}
-            <img src={ intIcon } alt="Icone de Armadura" />
-          </li>
-          <li data-testid={ setTestId('attr3-card') }>
-            {cardAttr3}
-            <img src={ defIcon } alt="Icone de Livro" />
-          </li>
-        </ul>
-      </div>
-    </section>
-  );
+        <div
+          className={ `small-card ${hover ? 'Focus' : ''}` }
+          onMouseOver={ this.onMouseHover }
+          onFocus={ this.onMouseHover }
+          onMouseOut={ this.onMouseOut }
+          onBlur={ this.onMouseOut }
+        >
+          <header className="small-card-header">
+            <div className="card-rarity">
+              <img src={ this.setCardRarity(cardRare) } alt={ cardRare } />
+            </div>
+            <h2 data-testid={ this.setTestId('name-card') }>{cardName}</h2>
+            <div className="card-trunfo">
+              {cardTrunfo && (
+                <p data-testid={ this.setTestId('trunfo-card') }>Super Trunfo</p>
+              )}
+              <img src={ this.isTrunfo(cardTrunfo) } alt="Super Trunfo" />
+            </div>
+          </header>
+          <div className="small-background-noise" />
+          <div className="small-card-image">
+            {cardImage === '' ? (
+              <img
+                data-testid={ this.setTestId('image-card') }
+                src={ noImageCharacter }
+                alt="Sem rosto"
+                className="small-noface-character"
+              />
+            ) : (
+              <>
+                <img
+                  src={ portraitCharacter }
+                  alt="Moldura"
+                  className="small-portrait"
+                />
+                <img
+                  data-testid={ this.setTestId('image-card') }
+                  className="small-user-character"
+                  src={ cardImage }
+                  alt={ `${cardName} preview` }
+                />
+              </>
+            )}
+          </div>
+          <ul className="small-card-attrs">
+            <li data-testid={ this.setTestId('attr1-card') }>
+              {cardAttr1}
+              <img src={ atkIcon } alt="Icone de lança" />
+            </li>
+            <li data-testid={ this.setTestId('attr2-card') }>
+              {cardAttr2}
+              <img src={ intIcon } alt="Icone de Armadura" />
+            </li>
+            <li data-testid={ this.setTestId('attr3-card') }>
+              {cardAttr3}
+              <img src={ defIcon } alt="Icone de Livro" />
+            </li>
+          </ul>
+        </div>
+      </section>
+    );
+  }
 }
 
 CardMini.defaultProps = {

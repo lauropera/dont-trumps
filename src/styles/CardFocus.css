@@ -1,0 +1,19 @@
+.Focus:hover {
+  height: 300px;
+  transition: 0.6s;
+  width: 240px;
+}
+
+.Focus-small-mold {
+  left: 2px;
+  position: absolute;
+  top: 0;
+  transition: 0.6s;
+  z-index: 2;
+}
+
+.Focus-small-mold > img {
+  height: 366px;
+  transition: 0.6s;
+  width: 280px;
+}
