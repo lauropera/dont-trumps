@@ -14,7 +14,8 @@ import defIcon from '../data/card-images/items/def_points_icon.png';
 import intIcon from '../data/card-images/items/int_points_icon.png';
 
 import '../styles/Card.css';
-import '../styles/CardMini.css';
+// import '../styles/CardMini.css';
+import '../styles/Mini.css';
 
 function CardMini(props) {
   function setCardRarity(rarityId) {
