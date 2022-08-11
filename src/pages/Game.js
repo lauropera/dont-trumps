@@ -5,8 +5,9 @@ import CardMini from '../components/CardMini';
 // import SetGameAttrs from '../components/SetGameAttrs';
 import deckArr from '../data/deck-data';
 import {
+  resetGame as resetGameAction,
   setGameDeck as setGameDeckAction,
-  startBattle,
+  startBattle as startBattleAction,
   startTurn as startTurnAction,
 } from '../redux/actions';
 import Header from '../components/Header';
@@ -24,6 +25,11 @@ class Game extends Component {
 
   componentDidMount() {
     this.setGameDeck();
+  }
+
+  componentWillUnmount() {
+    const { resetGame } = this.props;
+    resetGame();
   }
 
   setGameDeck = () => {
@@ -84,13 +90,15 @@ class Game extends Component {
   render() {
     const { playerDeck, playerChoice, cpuChoice, turnResult } = this.state;
     const { battleAttribute, turn, turnInProgress } = this.props;
+    console.log(battleAttribute);
+    console.log(turn);
     return (
       <main className="Game-Container">
         <Header />
         {/* <SetGameAttrs /> */}
         {/* {battleAttribute !== '' && ( */}
         <section className="Game">
-          <div>
+          {/* <div>
             {turn % 2 === 0 ? (
               <>
                 <p>Turno do adversário!</p>
@@ -99,7 +107,7 @@ class Game extends Component {
             ) : (
               <p>{`Atributo do turno: ${battleAttribute}`}</p>
             )}
-          </div>
+          </div> */}
           {turnInProgress && (
             <TurnResults
               result={ turnResult }
@@ -136,13 +144,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   startTurn: () => dispatch(startTurnAction()),
   setDeckFor: (person, deck) => dispatch(setGameDeckAction(person, deck)),
-  battleResult: (result) => dispatch(startBattle(result)),
+  battleResult: (result) => dispatch(startBattleAction(result)),
+  resetGame: () => dispatch(resetGameAction()),
 });
 
 Game.propTypes = {
   battleAttribute: string.isRequired,
   setDeckFor: func.isRequired,
   startTurn: func.isRequired,
+  resetGame: func.isRequired,
   battleResult: func.isRequired,
   attribute: string.isRequired,
   turn: number.isRequired,
