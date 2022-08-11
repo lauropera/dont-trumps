@@ -2,6 +2,11 @@ import { func, number, string } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setBattleAttr } from '../redux/actions';
+import '../styles/Game.css';
+
+import atkIcon from '../data/card-images/items/atk_points_icon.png';
+import defIcon from '../data/card-images/items/def_points_icon.png';
+import intIcon from '../data/card-images/items/int_points_icon.png';
 
 class SetGameAttrs extends Component {
   handleClick = ({ target }) => {
@@ -17,16 +22,27 @@ class SetGameAttrs extends Component {
           attribute.length === 0 && turn % 2 !== 0 ? 'Select-Attr' : 'Hide'
         } Game-Attr` }
       >
-        <p>Seu turno!</p>
-        <button type="button" name="Ataque" onClick={ this.handleClick }>
-          Ataque
-        </button>
-        <button type="button" name="Defesa" onClick={ this.handleClick }>
-          Defesa
-        </button>
-        <button type="button" name="Inteligência" onClick={ this.handleClick }>
-          Inteligência
-        </button>
+        <h3>Seu turno!</h3>
+        <div className="Attr-Buttons-Container">
+          <div className="Attr-Button">
+            <img src={ atkIcon } alt="Icone de lança" />
+            <button type="button" name="Ataque" onClick={ this.handleClick }>
+              Ataque
+            </button>
+          </div>
+          <div className="Attr-Button">
+            <img src={ defIcon } alt="Icone de Armadura" />
+            <button type="button" name="Defesa" onClick={ this.handleClick }>
+              Defesa
+            </button>
+          </div>
+          <div className="Attr-Button">
+            <img src={ intIcon } alt="Icone de Livro" />
+            <button type="button" name="Inteligência" onClick={ this.handleClick }>
+              Inteligência
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

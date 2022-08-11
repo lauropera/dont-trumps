@@ -2,7 +2,7 @@ import { bool, func, number, string } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardMini from '../components/CardMini';
-import SetGameAttrs from '../components/SetGameAttrs';
+// import SetGameAttrs from '../components/SetGameAttrs';
 import deckArr from '../data/deck-data';
 import {
   setGameDeck as setGameDeckAction,
@@ -87,40 +87,40 @@ class Game extends Component {
     return (
       <main className="Game-Container">
         <Header />
-        <SetGameAttrs />
-        {battleAttribute !== '' && (
-          <section className="Game">
-            <div>
-              {turn % 2 === 0 ? (
-                <>
-                  <p>Turno do adversário!</p>
-                  <p>{`Atributo do turno: ${battleAttribute}`}</p>
-                </>
-              ) : (
+        {/* <SetGameAttrs /> */}
+        {/* {battleAttribute !== '' && ( */}
+        <section className="Game">
+          <div>
+            {turn % 2 === 0 ? (
+              <>
+                <p>Turno do adversário!</p>
                 <p>{`Atributo do turno: ${battleAttribute}`}</p>
-              )}
-            </div>
-            {turnInProgress && (
-              <TurnResults
-                result={ turnResult }
-                player={ playerChoice }
-                cpu={ cpuChoice }
-              />
+              </>
+            ) : (
+              <p>{`Atributo do turno: ${battleAttribute}`}</p>
             )}
-            <div className={ `Game-Cards ${turnInProgress ? 'Hide-Card' : ''}` }>
-              {playerDeck.map((card) => (
-                <button
-                  type="button"
-                  key={ card.cardName }
-                  className="Game-Card"
-                  onClick={ () => this.selectCard(card) }
-                >
-                  <CardMini { ...card } />
-                </button>
-              ))}
-            </div>
-          </section>
-        )}
+          </div>
+          {turnInProgress && (
+            <TurnResults
+              result={ turnResult }
+              player={ playerChoice }
+              cpu={ cpuChoice }
+            />
+          )}
+          <div className={ `Game-Cards ${turnInProgress ? 'Hide-Card' : ''}` }>
+            {playerDeck.map((card) => (
+              <button
+                type="button"
+                key={ card.cardName }
+                className="Game-Card"
+                onClick={ () => this.selectCard(card) }
+              >
+                <CardMini { ...card } />
+              </button>
+            ))}
+          </div>
+        </section>
+        {/* )} */}
       </main>
     );
   }

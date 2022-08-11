@@ -39,7 +39,6 @@ function CardMini(props) {
 
   const {
     cardName,
-    cardDescription,
     cardImage,
     cardAttr1,
     cardAttr2,
@@ -50,7 +49,7 @@ function CardMini(props) {
   } = props;
   return (
     <section
-      className={ `card-container ${turnResult ? 'Winner-Card' : 'Loser-Card'}` }
+      className={ `card-container-mini ${turnResult ? 'Winner-Card' : 'Loser-Card'}` }
     >
       <div className="small-mold">
         <img src={ cardMold } alt="Moldura" />
@@ -60,9 +59,6 @@ function CardMini(props) {
           <div className="card-rarity">
             <img src={ setCardRarity(cardRare) } alt={ cardRare } />
           </div>
-          <p data-testid={ setTestId('rare-card') } className="small-rarity-text">
-            {cardRare}
-          </p>
           <h2 data-testid={ setTestId('name-card') }>{cardName}</h2>
           <div className="card-trunfo">
             {cardTrunfo && (
@@ -110,9 +106,6 @@ function CardMini(props) {
             <img src={ defIcon } alt="Icone de Livro" />
           </li>
         </ul>
-        <div className="small-card-description">
-          <p data-testid={ setTestId('description-card') }>{cardDescription}</p>
-        </div>
       </div>
     </section>
   );
@@ -120,7 +113,6 @@ function CardMini(props) {
 
 CardMini.defaultProps = {
   cardName: '',
-  cardDescription: '',
   cardAttr1: '0',
   cardAttr2: '0',
   cardAttr3: '0',
@@ -133,7 +125,6 @@ CardMini.defaultProps = {
 
 CardMini.propTypes = {
   cardName: string,
-  cardDescription: string,
   cardAttr1: string,
   cardAttr2: string,
   cardAttr3: string,

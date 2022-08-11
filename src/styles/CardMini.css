@@ -1,13 +1,18 @@
+.card-container-mini {
+  padding: 1.8rem 1.6rem;
+  position: relative;
+}
+
 .small-mold {
-  left: 18px;
+  left: 10px;
   position: absolute;
-  top: 15px;
+  top: 12px;
   z-index: 2;
 }
 
 .small-mold img {
-  height: 430px;
-  width: 280px;
+  height: 246px;
+  width: 182px;
 }
 
 .small-card {
@@ -17,25 +22,33 @@
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  height: 360px;
+  gap: 10px;
+  height: 210px;
   overflow: hidden;
-  padding-bottom: 8px;
   position: relative;
-  width: 231px;
+  width: 150px;
 }
 
 .small-card-header {
   background-color: #23192f;
-  border-bottom: 4px solid black;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   display: flex;
-  height: 50px;
+  height: 34px;
   justify-content: space-between;
-  padding: 4px 4px 0;
   position: relative;
   width: 100%;
+}
+
+.small-card-attrs li img {
+  height: 26px;
+  position: absolute;
+  top: -18px;
+  width: 26px;
+}
+
+.small-card-header .card-rarity img, .small-card-header .card-trunfo img {
+  width: 34px;
 }
 
 .small-rarity-text {
@@ -57,9 +70,10 @@
   color: #eeff;
   cursor: default;
   font-family: Forbidden-Knowledge , sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   inline-size: 90%;
-  left: 10px;
+  left: 8px;
+  letter-spacing: 0.6px;
   overflow-wrap: break-word;
   position: absolute;
   text-align: center;
@@ -74,36 +88,36 @@
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: inset 0 0 20px 6px #23192f;
-  height: 309px;
+  height: 176px;
   opacity: 0.6;
   position: absolute;
-  top: 50px;
-  width: 230px;
+  top: 34px;
+  width: 150px;
   z-index: 1;
 }
 
 .small-card-image {
   align-items: center;
   display: flex;
-  height: 240px;
+  height: 110px;
   justify-content: center;
   position: relative;
   width: 90%;
 }
 
 .small-portrait, .small-user-character, .small-noface-character {
-  height: 266px;
+  height: 180px;
   line-height: 50vh;
   object-fit: contain;
   position: absolute;
   text-align: center;
-  width: 220px;
+  width: 150px;
   z-index: 2;
 }
 
 .small-card-attrs {
   display: flex;
-  height: 48px;
+  height: 28px;
   justify-content: space-evenly;
   list-style: none;
   width: 90%;
@@ -113,40 +127,15 @@
 .small-card-attrs li {
   align-items: center;
   background-color: #23192f;
-  border: 2px solid black;
+  border: 1.2px solid black;
   border-radius: 100%;
   cursor: default;
   display: flex;
   font-family: Chakra Petch , sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   justify-content: center;
   position: relative;
-  width: 38px;
+  width: 29px;
   z-index: 2;
-}
-
-.small-card-attrs li img {
-  height: 34px;
-  position: absolute;
-  top: -25px;
-  width: 34px;
-}
-
-.small-card-description {
-  align-items: flex-start;
-  background-color: #23192f;
-  border: 2px solid black;
-  color: #eef;
-  display: flex;
-  font-size: 11px;
-  height: 80px;
-  padding: 2px;
-  text-align: left;
-  width: 90%;
-  z-index: 2;
-}
-
-.small-card-description p {
-  cursor: default;
 }
