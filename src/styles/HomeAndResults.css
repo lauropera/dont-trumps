@@ -9,17 +9,76 @@
   width: 100vw;
 }
 
+.Home-Container {
+  align-items: flex-start;
+  background-image: url('../data/card-images/HomeScreen.png');
+  padding: 2vw;
+}
+
+.Results-Container {
+  text-align: center;
+}
+
 .Home-Container h1 {
-  font-size: 3rem;
+  color: #eeff;
+  font-family: Forbidden-Knowledge , sans-serif;
+  font-size: 7rem;
+  inline-size: 310px;
+  text-shadow: 4px 4px 1px black;
+  text-transform: uppercase;
 }
 
 .Links-Container {
   display: flex;
   flex-flow: column nowrap;
   font-size: 1.4rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+.Links-Container a, .Links-Container a:visited {
+  background: #23192fcb;
+  border-radius: 3px;
+  color: white;
+  padding: 1rem;
+  text-decoration: none;
+  transition: 0.4s;
+  width: 300px;
+}
+
+.Links-Container a:hover {
+  background: #593060;
+  text-decoration: none;
+  transition: 0.4s;
 }
 
 .Results-Container button {
   cursor: pointer;
   padding: 6px;
+}
+
+@media screen and ( max-width : 790px ) {
+
+  .Home-Container {
+    align-items: center;
+    background-image: url('../data/card-images/HomeScreenAlt.png');
+    color: black;
+    gap: 0;
+    justify-content: flex-start;
+    text-align: center;
+  }
+
+  .Links-Container {
+    align-items: center;
+    gap: 0;
+    height: 40%;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .Links-Container a, .Links-Container a:visited {
+    background: #593060ec;
+    box-shadow: 1px 1px 8px black;
+  }
+
 }

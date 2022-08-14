@@ -10,9 +10,24 @@
   background-color: #23192f;
   color: #e3e2ec;
   display: flex;
+  height: 10vh;
   justify-content: center;
   padding: 12px;
   width: 100%;
+}
+
+.game-header a h1, .game-header a:visited h1 {
+  align-self: center;
+  color: #e9e9f0;
+  font-family: Forbidden-Knowledge , sans-serif;
+  font-size: 3rem;
+  height: 48px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.game-header a:hover {
+  text-decoration: none;
 }
 
 .main-content {
@@ -43,13 +58,24 @@
 
 .card-filter-area, .deck, .Home-Container, .Results-Container {
   background-attachment: fixed;
-  background-image: url('./data/card-images/background.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.card-filter-area, .deck, .Results-Container {
+  background-image: url('./data/card-images/background.jpg');
+}
+
 @media screen and ( max-width : 679px ) {
+
+  .game-header {
+    padding: 6px;
+  }
+
+  .game-header h1 {
+    align-self: center;
+  }
 
   .form-new-card {
     flex-direction: column;

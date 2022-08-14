@@ -1,5 +1,5 @@
 .Game-Container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .Game-Container, .Game {
@@ -10,18 +10,22 @@
 
 .Game {
   justify-content: center;
+  min-height: 90vh;
 }
 
 .Game-Cards {
+  align-items: center;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  min-height: 80vh;
 }
 
 .Game-Card {
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
   transition: 0.6s;
 }
 
@@ -89,4 +93,36 @@
   position: absolute;
   top: 10px;
   width: 64px;
+}
+
+.Turn-Results-Container {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.Turn-Result {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+@media screen and ( max-width : 678px ) {
+
+  .Game {
+    height: auto;
+  }
+
+  .Attr-Buttons-Container {
+    gap: 0.4rem;
+  }
+
+  .Turn-Result-Container {
+    flex-flow: column wrap;
+    text-align: center;
+  }
+
+  .Turn-Result {
+    flex-flow: column wrap;
+  }
+
 }

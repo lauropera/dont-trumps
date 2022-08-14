@@ -13,6 +13,7 @@ class Results extends Component {
 
   render() {
     const { wins, loses } = this.props;
+    console.log(wins, loses);
     return (
       <main className="Results-Container">
         <h1>Resultados</h1>

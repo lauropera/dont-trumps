@@ -2,7 +2,7 @@ import { bool, func, number, string } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardMini from '../components/CardMini';
-// import SetGameAttrs from '../components/SetGameAttrs';
+import SetGameAttrs from '../components/SetGameAttrs';
 import deckArr from '../data/deck-data';
 import {
   resetGame as resetGameAction,
@@ -20,6 +20,7 @@ class Game extends Component {
     cpuDeck: [],
     playerChoice: {},
     cpuChoice: {},
+    chooseAttribute: false,
     turnResult: false,
   };
 
@@ -27,9 +28,17 @@ class Game extends Component {
     this.setGameDeck();
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   componentWillUnmount() {
-    const { resetGame } = this.props;
-    resetGame();
+    const { playerDeck } = this.state;
+    const { resetGame, turn } = this.props;
+    const LAST_TURN = 5;
+    if (playerDeck.length === 0 && turn === LAST_TURN) {
+      resetGame();
+    }
   }
 
   setGameDeck = () => {
@@ -55,17 +64,19 @@ class Game extends Component {
         cpuChoice: cpuCard,
         cpuDeck: this.removeCard(cpuDeck, cpuCard),
         playerDeck: this.removeCard(playerDeck, card),
+        chooseAttribute: true,
       },
       () => {
-        const { startTurn } = this.props;
-        startTurn();
-        this.getTurnResult();
+        const { attribute, startTurn } = this.props;
+        if (attribute !== '') {
+          startTurn();
+          this.getTurnResult(attribute);
+        }
       },
     );
   };
 
-  removeCard = (deck, card) => deck
-    .filter(({ cardName }) => cardName !== card.cardName);
+  removeCard = (deck, card) => deck.filter(({ cardName }) => cardName !== card.cardName);
 
   convertToCardAttr = (attr) => {
     switch (attr) {
@@ -78,57 +89,58 @@ class Game extends Component {
     }
   };
 
-  getTurnResult = () => {
+  getTurnResult = (attr) => {
     const { playerChoice: player, cpuChoice: cpu } = this.state;
-    const { attribute, battleResult } = this.props;
-    const turnAttribute = this.convertToCardAttr(attribute);
+    const { battleResult } = this.props;
+    const turnAttribute = this.convertToCardAttr(attr);
     const result = player[turnAttribute] > cpu[turnAttribute];
     this.setState({ turnResult: result });
     battleResult(result);
   };
 
+  endTurn = () => this.setState({ chooseAttribute: false });
+
   render() {
-    const { playerDeck, playerChoice, cpuChoice, turnResult } = this.state;
-    const { battleAttribute, turn, turnInProgress } = this.props;
-    console.log(battleAttribute);
-    console.log(turn);
+    const {
+      playerDeck, playerChoice, cpuChoice,
+      turnResult, chooseAttribute,
+    } = this.state;
+    const { battleAttribute, turn, turnInProgress, attribute } = this.props;
     return (
       <main className="Game-Container">
         <Header />
-        {/* <SetGameAttrs /> */}
-        {/* {battleAttribute !== '' && ( */}
         <section className="Game">
-          {/* <div>
-            {turn % 2 === 0 ? (
-              <>
-                <p>Turno do adversário!</p>
-                <p>{`Atributo do turno: ${battleAttribute}`}</p>
-              </>
-            ) : (
-              <p>{`Atributo do turno: ${battleAttribute}`}</p>
-            )}
-          </div> */}
+          <h2>
+            {battleAttribute !== ''
+              && turn % 2 === 0
+              && `Atributo do turno: ${attribute}`}
+          </h2>
+          {chooseAttribute && attribute === '' && (
+            <SetGameAttrs getTurnResult={ this.getTurnResult } />
+          )}
           {turnInProgress && (
             <TurnResults
               result={ turnResult }
               player={ playerChoice }
               cpu={ cpuChoice }
+              endTurn={ this.endTurn }
             />
           )}
-          <div className={ `Game-Cards ${turnInProgress ? 'Hide-Card' : ''}` }>
-            {playerDeck.map((card) => (
-              <button
-                type="button"
-                key={ card.cardName }
-                className="Game-Card"
-                onClick={ () => this.selectCard(card) }
-              >
-                <CardMini { ...card } />
-              </button>
-            ))}
-          </div>
+          {!chooseAttribute && (
+            <div className="Game-Cards">
+              {playerDeck.map((card) => (
+                <button
+                  type="button"
+                  key={ card.cardName }
+                  className="Game-Card"
+                  onClick={ () => this.selectCard(card) }
+                >
+                  <CardMini preview="small" { ...card } />
+                </button>
+              ))}
+            </div>
+          )}
         </section>
-        {/* )} */}
       </main>
     );
   }

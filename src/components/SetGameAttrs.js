@@ -1,7 +1,7 @@
 import { func, number, string } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setBattleAttr } from '../redux/actions';
+import { setBattleAttr, startTurn as startTurnAction } from '../redux/actions';
 import '../styles/Game.css';
 
 import atkIcon from '../data/card-images/items/atk_points_icon.png';
@@ -10,8 +10,10 @@ import intIcon from '../data/card-images/items/int_points_icon.png';
 
 class SetGameAttrs extends Component {
   handleClick = ({ target }) => {
-    const { battleType } = this.props;
+    const { battleType, startTurn, getTurnResult } = this.props;
+    startTurn();
     battleType(target.name);
+    getTurnResult(target.name);
   };
 
   render() {
@@ -54,12 +56,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  startTurn: () => dispatch(startTurnAction()),
   battleType: (type) => dispatch(setBattleAttr(type)),
 });
 
 SetGameAttrs.propTypes = {
   turn: number.isRequired,
   battleType: func.isRequired,
+  startTurn: func.isRequired,
+  getTurnResult: func.isRequired,
   attribute: string.isRequired,
 };
 

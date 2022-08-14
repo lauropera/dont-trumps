@@ -14,15 +14,9 @@ import defIcon from '../data/card-images/items/def_points_icon.png';
 import intIcon from '../data/card-images/items/int_points_icon.png';
 
 import '../styles/Card.css';
-// import '../styles/CardMini.css';
-import '../styles/Mini.css';
-import '../styles/CardFocus.css';
+import '../styles/CardMiniPreview.css';
 
 class CardMini extends React.Component {
-  state = {
-    hover: false,
-  };
-
   setCardRarity = (rarityId) => {
     switch (rarityId) {
     case 'raro':
@@ -41,10 +35,6 @@ class CardMini extends React.Component {
 
   isTrunfo = (trunfoInfo) => (trunfoInfo ? trunfoCard : notTrunfoCard);
 
-  onMouseHover = () => this.setState({ hover: true });
-
-  onMouseOut = () => this.setState({ hover: false });
-
   render() {
     const {
       cardName,
@@ -55,28 +45,18 @@ class CardMini extends React.Component {
       cardRare,
       cardTrunfo,
       turnResult,
+      preview,
     } = this.props;
-    const { hover } = this.state;
     return (
       <section
-        className={ `card-container-mini
+        className={ `card-container-${preview}
           ${turnResult ? 'Winner-Card' : 'Loser-Card'}` }
-        // onMouseOver={ this.onMouseHover }
-        // onFocus={ this.onMouseHover }
-        // onMouseOut={ this.onMouseOut }
-        // onBlur={ this.onMouseOut }
       >
-        <div className={ `small-mold ${hover ? 'Focus-small-mold' : ''}` }>
+        <div className={ `small-mold-${preview}` }>
           <img src={ cardMold } alt="Moldura" />
         </div>
-        <div
-          className={ `small-card ${hover ? 'Focus' : ''}` }
-          onMouseOver={ this.onMouseHover }
-          onFocus={ this.onMouseHover }
-          onMouseOut={ this.onMouseOut }
-          onBlur={ this.onMouseOut }
-        >
-          <header className="small-card-header">
+        <div className={ `small-card-${preview}` }>
+          <header className={ `small-card-header-${preview}` }>
             <div className="card-rarity">
               <img src={ this.setCardRarity(cardRare) } alt={ cardRare } />
             </div>
@@ -88,32 +68,32 @@ class CardMini extends React.Component {
               <img src={ this.isTrunfo(cardTrunfo) } alt="Super Trunfo" />
             </div>
           </header>
-          <div className="small-background-noise" />
-          <div className="small-card-image">
+          <div className={ `small-background-noise-${preview}` } />
+          <div className={ `small-card-image-${preview}` }>
             {cardImage === '' ? (
               <img
                 data-testid={ this.setTestId('image-card') }
                 src={ noImageCharacter }
                 alt="Sem rosto"
-                className="small-noface-character"
+                className={ `small-noface-character-${preview}` }
               />
             ) : (
               <>
                 <img
                   src={ portraitCharacter }
                   alt="Moldura"
-                  className="small-portrait"
+                  className={ `small-portrait-${preview}` }
                 />
                 <img
                   data-testid={ this.setTestId('image-card') }
-                  className="small-user-character"
+                  className={ `small-user-character-${preview}` }
                   src={ cardImage }
                   alt={ `${cardName} preview` }
                 />
               </>
             )}
           </div>
-          <ul className="small-card-attrs">
+          <ul className={ `small-card-attrs-${preview}` }>
             <li data-testid={ this.setTestId('attr1-card') }>
               {cardAttr1}
               <img src={ atkIcon } alt="Icone de lança" />
@@ -143,6 +123,7 @@ CardMini.defaultProps = {
   cardTrunfo: false,
   customCard: false,
   turnResult: false,
+  preview: 'small',
 };
 
 CardMini.propTypes = {
@@ -155,6 +136,7 @@ CardMini.propTypes = {
   cardTrunfo: bool,
   customCard: bool,
   turnResult: bool,
+  preview: string,
 };
 
 export default CardMini;
