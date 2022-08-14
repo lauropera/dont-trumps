@@ -1,6 +1,8 @@
 import React from 'react';
 import { bool, func } from 'prop-types';
 import '../styles/FilterArea.css';
+import { connect } from 'react-redux';
+import { filterCardsAction } from '../redux/actions';
 
 function FilterArea(props) {
   const { onInputChange, filterTrunfo } = props;
@@ -48,9 +50,20 @@ function FilterArea(props) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  filterTrunfo: state.filterArea.showTrunfoCard,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onInputChange: ({ target: { type, name, checked }, target }) => {
+    const value = type === 'checkbox' ? checked : target.value;
+    dispatch(filterCardsAction({ [name]: value }));
+  },
+});
+
 FilterArea.propTypes = {
   onInputChange: func.isRequired,
   filterTrunfo: bool.isRequired,
 };
 
-export default FilterArea;
+export default connect(mapStateToProps, mapDispatchToProps)(FilterArea);

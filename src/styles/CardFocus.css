@@ -1,0 +1,81 @@
+.Focus:hover {
+  height: 300px;
+  transition: 0.2s;
+  width: 240px;
+}
+
+.Focus-card-container {
+  padding: 1.8rem 1.6rem;
+  transition: 0.2s;
+}
+
+.Focus-card {
+  gap: 4px;
+  height: 308px;
+  transition: 0.2s;
+  width: 231px;
+}
+
+.Focus-card-header {
+  height: 50px;
+  padding: 4px 0 0;
+  transition: 0.3s;
+}
+
+.Focus-card-header h2 {
+  font-size: 32px;
+  inline-size: 90%;
+  left: 10px;
+  top: 12px;
+  transition: 0.2s;
+}
+
+.Focus-card-header .card-rarity img, .Focus-card-header .card-trunfo img {
+  transition: 0.2s;
+  width: 54px;
+}
+
+.Focus-card-header .card-rarity {
+  padding-left: 2px;
+  transition: 0.2s;
+}
+
+.Focus-card-header .card-trunfo {
+  padding-top: 4px;
+  transition: 0.2s;
+}
+
+.Focus-background-noise {
+  height: 258px;
+  top: 50px;
+  transition: 0.2s;
+  width: 230px;
+}
+
+.Focus-card-image {
+  height: 180px;
+  transition: 0.2s;
+  width: 90%;
+}
+
+.Focus-portrait, .Focus-user-char, .Focus-noface-char {
+  height: 266px;
+  line-height: 50vh;
+  transition: 0.2s;
+  width: 220px;
+  z-index: 2;
+}
+
+.Focus-card-attrs {
+  height: 48px;
+  transition: 0.2s;
+  width: 90%;
+}
+
+.Focus-card-attrs li {
+  border: 2px solid black;
+  font-size: 18px;
+  font-weight: 500;
+  transition: 0.2s;
+  width: 48px;
+}

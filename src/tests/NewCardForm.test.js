@@ -2,9 +2,10 @@ import React from "react";
 import { render, screen } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
 import NewCardForm from '../pages/NewCardForm';
+import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 
 describe('Creating a new card using the form', () => {
-  beforeEach(() => render(<NewCardForm handleSubmit={() => {}} />));
+  beforeEach(() => renderWithRouterAndRedux(<NewCardForm handleSubmit={() => {}} />));
   it('Should have the "save" button disabled by default', () => {
     const saveBtn = screen.getByRole('button', { name: /salvar/i });
 
@@ -31,7 +32,7 @@ describe('Creating a new card using the form', () => {
 
   it('Should render the typed description', () => {
     const descInput = screen.getByLabelText(/descrição/i);
-    
+
     userEvent.type(descInput, 'desc');
     expect(descInput).toHaveValue('desc');
 

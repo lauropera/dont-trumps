@@ -1,5 +1,6 @@
 import React from 'react';
 import { bool, string } from 'prop-types';
+
 import cardMold from '../data/card-images/characters/mold.png';
 import noImageCharacter from '../data/card-images/characters/random_none.png';
 import portraitCharacter from '../data/card-images/characters/portrait_1.png';
@@ -11,6 +12,7 @@ import notTrunfoCard from '../data/card-images/items/trunfo_off.png';
 import atkIcon from '../data/card-images/items/atk_points_icon.png';
 import defIcon from '../data/card-images/items/def_points_icon.png';
 import intIcon from '../data/card-images/items/int_points_icon.png';
+
 import '../styles/Card.css';
 
 function Card(props) {
