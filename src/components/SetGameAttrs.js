@@ -33,15 +33,15 @@ class SetGameAttrs extends Component {
             </button>
           </div>
           <div className="Attr-Button">
-            <img src={ defIcon } alt="Icone de Armadura" />
-            <button type="button" name="Defesa" onClick={ this.handleClick }>
-              Defesa
-            </button>
-          </div>
-          <div className="Attr-Button">
             <img src={ intIcon } alt="Icone de Livro" />
             <button type="button" name="Inteligência" onClick={ this.handleClick }>
               Inteligência
+            </button>
+          </div>
+          <div className="Attr-Button">
+            <img src={ defIcon } alt="Icone de Armadura" />
+            <button type="button" name="Defesa" onClick={ this.handleClick }>
+              Defesa
             </button>
           </div>
         </div>
