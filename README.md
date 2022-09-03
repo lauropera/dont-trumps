@@ -81,8 +81,6 @@ Vou continuar evoluindo ele com o tempo!
     </details>
   <br />
 
-<br />
-
 # :iphone: Mobile
 
 ![Mobile Screenshot](./imgs/Mobile-Preview.png)
