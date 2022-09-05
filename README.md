@@ -22,6 +22,7 @@ Vou continuar evoluindo ele com o tempo!
 * CSS
 * JavaScript
 * React.js
+* React Redux
 
 <br />
 
