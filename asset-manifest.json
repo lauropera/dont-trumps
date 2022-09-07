@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/dont-trumps/static/css/main.bf220243.css",
-    "main.js": "/dont-trumps/static/js/main.96dcbde2.js",
+    "main.js": "/dont-trumps/static/js/main.026a93ea.js",
     "static/media/HomeScreen.png": "/dont-trumps/static/media/HomeScreen.92cd4de323d9a2c3268f.png",
     "static/media/HomeScreenAlt.png": "/dont-trumps/static/media/HomeScreenAlt.8d1d27d5e16c24ad4909.png",
     "static/media/webber_nature.png": "/dont-trumps/static/media/webber_nature.57849e5645c193975f60.png",
@@ -63,10 +63,10 @@
     "static/media/mold.png": "/dont-trumps/static/media/mold.63748d822cee7afb9895.png",
     "index.html": "/dont-trumps/index.html",
     "main.bf220243.css.map": "/dont-trumps/static/css/main.bf220243.css.map",
-    "main.96dcbde2.js.map": "/dont-trumps/static/js/main.96dcbde2.js.map"
+    "main.026a93ea.js.map": "/dont-trumps/static/js/main.026a93ea.js.map"
   },
   "entrypoints": [
     "static/css/main.bf220243.css",
-    "static/js/main.96dcbde2.js"
+    "static/js/main.026a93ea.js"
   ]
 }
