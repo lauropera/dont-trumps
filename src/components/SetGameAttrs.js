@@ -10,10 +10,11 @@ import intIcon from '../data/card-images/items/int_points_icon.png';
 
 class SetGameAttrs extends Component {
   handleClick = ({ target }) => {
-    const { battleType, startTurn, getTurnResult } = this.props;
+    const { battleType, startTurn, getTurnResult, selectCpuCard } = this.props;
     startTurn();
     battleType(target.name);
-    getTurnResult(target.name);
+    const cpuCard = selectCpuCard(target.name);
+    getTurnResult(target.name, cpuCard);
   };
 
   render() {
@@ -65,6 +66,7 @@ SetGameAttrs.propTypes = {
   battleType: func.isRequired,
   startTurn: func.isRequired,
   getTurnResult: func.isRequired,
+  selectCpuCard: func.isRequired,
   attribute: string.isRequired,
 };
 
