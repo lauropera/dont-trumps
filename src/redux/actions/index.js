@@ -1,4 +1,5 @@
 export const NEW_CARD = 'NEW_CARD';
+export const CHECK_TRUNFO = 'CHECK_TRUNFO';
 export const INPUT_CHANGE = 'INPUT_CHANGE';
 export const FILTER_CHANGE = 'FILTER_CHANGE';
 export const REMOVE_CARD = 'REMOVE_CARD';
@@ -19,6 +20,8 @@ export const inputChangeAction = ({ target }) => {
 };
 
 export const newCardAction = () => ({ type: NEW_CARD });
+
+export const checkIfHasTrunfo = () => ({ type: CHECK_TRUNFO });
 
 export const removeCardAction = (payload) => ({
   type: REMOVE_CARD,

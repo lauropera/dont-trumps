@@ -13,6 +13,7 @@ import {
 import Header from '../components/Header';
 import '../styles/Game.css';
 import TurnResults from '../components/TurnResults';
+import { getCards } from '../redux/reducers/customCard';
 
 class Game extends Component {
   state = {
@@ -42,8 +43,9 @@ class Game extends Component {
   }
 
   setGameDeck = () => {
-    const playerDeck = this.randomizeDeck(deckArr);
-    const cpuDeck = this.randomizeDeck(deckArr);
+    const deck = [...getCards(), ...deckArr];
+    const playerDeck = this.randomizeDeck(deck);
+    const cpuDeck = this.randomizeDeck(deck);
     this.setState({ playerDeck, cpuDeck });
   };
 
@@ -55,14 +57,33 @@ class Game extends Component {
       .slice(0, MAX_DECK_LENGTH);
   };
 
+  convertToCardAttr = (attr) => {
+    if (attr === 'Ataque') return 'cardAttr1';
+    if (attr === 'Inteligência') return 'cardAttr2';
+    if (attr === 'Defesa') return 'cardAttr3';
+  };
+
+  selectCpuCard = (attribute) => {
+    const { cpuDeck } = this.state;
+    const { battleAttribute } = this.props;
+    attribute = this.convertToCardAttr(attribute)
+      || this.convertToCardAttr(battleAttribute);
+    const LAST_POSITION = -1;
+    const cpuCard = cpuDeck
+      .sort((a, b) => a[attribute] - b[attribute])
+      .at(LAST_POSITION);
+    this.setState({
+      cpuChoice: cpuCard,
+      cpuDeck: this.removeCard(cpuDeck, cpuCard),
+    });
+    return cpuCard;
+  };
+
   selectCard = (card) => {
-    const { playerDeck, cpuDeck } = this.state;
-    const cpuCard = cpuDeck[Math.floor(Math.random() * cpuDeck.length)];
+    const { playerDeck } = this.state;
     this.setState(
       {
         playerChoice: card,
-        cpuChoice: cpuCard,
-        cpuDeck: this.removeCard(cpuDeck, cpuCard),
         playerDeck: this.removeCard(playerDeck, card),
         chooseAttribute: true,
       },
@@ -78,21 +99,11 @@ class Game extends Component {
 
   removeCard = (deck, card) => deck.filter(({ cardName }) => cardName !== card.cardName);
 
-  convertToCardAttr = (attr) => {
-    switch (attr) {
-    case 'Ataque':
-      return 'cardAttr1';
-    case 'Inteligência':
-      return 'cardAttr2';
-    default:
-      return 'cardAttr3';
-    }
-  };
-
-  getTurnResult = (attr) => {
-    const { playerChoice: player, cpuChoice: cpu } = this.state;
+  getTurnResult = (attr, cpuCard) => {
+    const { playerChoice: player } = this.state;
     const { battleResult } = this.props;
     const turnAttribute = this.convertToCardAttr(attr);
+    const cpu = cpuCard || this.selectCpuCard(turnAttribute);
     const result = player[turnAttribute] > cpu[turnAttribute];
     this.setState({ turnResult: result });
     battleResult(result);
@@ -116,7 +127,10 @@ class Game extends Component {
               && `Atributo do turno: ${attribute}`}
           </h2>
           {chooseAttribute && attribute === '' && (
-            <SetGameAttrs getTurnResult={ this.getTurnResult } />
+            <SetGameAttrs
+              getTurnResult={ this.getTurnResult }
+              selectCpuCard={ this.selectCpuCard }
+            />
           )}
           {turnInProgress && (
             <TurnResults

@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { bool, func, string } from 'prop-types';
 import { FaLink } from 'react-icons/fa';
 import { connect } from 'react-redux';
-import { inputChangeAction, newCardAction } from '../redux/actions';
+import { checkIfHasTrunfo, inputChangeAction, newCardAction } from '../redux/actions';
 import '../styles/Form.css';
 
 function Form(props) {
+  useEffect(() => {
+    const { checkTrunfo } = props;
+    checkTrunfo();
+  }, []);
+
   function remainingAttr() {
     const { cardAttr1, cardAttr2, cardAttr3 } = props;
     const maxPoints = 200;
@@ -201,7 +206,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onInputChange: (e) => dispatch(inputChangeAction(e)),
-  newCard: (newCard) => dispatch(newCardAction(newCard)),
+  newCard: () => dispatch(newCardAction()),
+  checkTrunfo: () => dispatch(checkIfHasTrunfo()),
 });
 
 Form.defaultProps = {
@@ -227,6 +233,7 @@ Form.propTypes = {
   hasTrunfo: bool.isRequired,
   onInputChange: func.isRequired,
   newCard: func.isRequired,
+  checkTrunfo: func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
