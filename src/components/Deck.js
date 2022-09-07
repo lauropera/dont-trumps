@@ -9,6 +9,7 @@ import {
 import deckArr from '../data/deck-data';
 import Card from './Card';
 import '../styles/Deck.css';
+import { getCards } from '../redux/reducers/customCard';
 
 class Deck extends React.Component {
   componentDidMount() {
@@ -32,10 +33,10 @@ class Deck extends React.Component {
   }
 
   render() {
-    const { cardList, removeCard } = this.props;
+    const { removeCard } = this.props;
     return (
       <main className="deck">
-        {this.applyFilters(cardList).map((card) => (
+        {this.applyFilters(getCards()).map((card) => (
           <div key={ card.cardName } className="deck-container">
             <Card { ...card } />
             <button

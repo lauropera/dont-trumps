@@ -1,4 +1,4 @@
-import { INPUT_CHANGE, NEW_CARD, REMOVE_CARD } from '../actions';
+import { CHECK_TRUNFO, INPUT_CHANGE, NEW_CARD, REMOVE_CARD } from '../actions';
 
 const INITIAL_STATE = {
   form: {
@@ -16,9 +16,19 @@ const INITIAL_STATE = {
   cardCollection: [],
 };
 
-const removeCard = (cards, toRemove) => (
-  cards.filter((card) => card !== toRemove)
+export const checkTrunfo = (deck) => (
+  deck.some(({ cardTrunfo }) => cardTrunfo)
 );
+
+export const getCards = () => (
+  JSON.parse(localStorage.getItem('userCards')) || []);
+
+const saveCards = (newCard) => {
+  localStorage.setItem('userCards', JSON.stringify([...getCards(), newCard]));
+};
+
+const removeCard = (cards, toRemove) => (
+  cards.filter(({ cardName }) => cardName !== toRemove.cardName));
 
 function customCard(state = INITIAL_STATE, action) {
   const { cardCollection } = state;
@@ -33,15 +43,17 @@ function customCard(state = INITIAL_STATE, action) {
     };
 
   case NEW_CARD:
+    saveCards({ ...state.form });
     return {
       form: { ...INITIAL_STATE.form },
-      hasTrunfo:
-          state.form.cardTrunfo
-          || cardCollection.some(({ cardTrunfo }) => cardTrunfo),
+      hasTrunfo: state.form.cardTrunfo || checkTrunfo(cardCollection),
       cardCollection: [...cardCollection, { ...state.form }],
     };
 
   case REMOVE_CARD:
+    localStorage.setItem('userCards', JSON.stringify(
+      removeCard(getCards(), action.payload),
+    ));
     if (action.payload.cardTrunfo) {
       return {
         ...state,
@@ -52,6 +64,12 @@ function customCard(state = INITIAL_STATE, action) {
     return {
       ...state,
       cardCollection: removeCard(cardCollection, action.payload),
+    };
+
+  case CHECK_TRUNFO:
+    return {
+      ...state,
+      hasTrunfo: checkTrunfo(getCards()),
     };
 
   default:

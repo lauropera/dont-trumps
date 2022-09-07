@@ -13,6 +13,7 @@ import {
 import Header from '../components/Header';
 import '../styles/Game.css';
 import TurnResults from '../components/TurnResults';
+import { getCards } from '../redux/reducers/customCard';
 
 class Game extends Component {
   state = {
@@ -42,8 +43,9 @@ class Game extends Component {
   }
 
   setGameDeck = () => {
-    const playerDeck = this.randomizeDeck(deckArr);
-    const cpuDeck = this.randomizeDeck(deckArr);
+    const deck = [...getCards(), ...deckArr];
+    const playerDeck = this.randomizeDeck(deck);
+    const cpuDeck = this.randomizeDeck(deck);
     this.setState({ playerDeck, cpuDeck });
   };
 
