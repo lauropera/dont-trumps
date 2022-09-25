@@ -24,6 +24,7 @@ Vou continuar evoluindo ele com o tempo!
 * React.js
 * React Redux
 * React Router
+* React Testing Library (RTL)
 
 <br />
 
