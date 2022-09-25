@@ -18,7 +18,7 @@ Vou continuar evoluindo ele com o tempo!
 
 ## ⚙️ Tecnologias
 
-* HTML
+* HTML5
 * CSS
 * JavaScript
 * React.js
