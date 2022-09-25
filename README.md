@@ -23,6 +23,7 @@ Vou continuar evoluindo ele com o tempo!
 * JavaScript
 * React.js
 * React Redux
+* React Router
 
 <br />
 
