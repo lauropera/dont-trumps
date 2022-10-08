@@ -112,10 +112,8 @@ class Game extends Component {
   endTurn = () => this.setState({ chooseAttribute: false });
 
   render() {
-    const {
-      playerDeck, playerChoice, cpuChoice,
-      turnResult, chooseAttribute,
-    } = this.state;
+    const { playerDeck, playerChoice,
+      cpuChoice, turnResult, chooseAttribute } = this.state;
     const { battleAttribute, turn, turnInProgress, attribute } = this.props;
     return (
       <main className="Game-Container">
@@ -141,17 +139,20 @@ class Game extends Component {
             />
           )}
           {!chooseAttribute && (
-            <div className="Game-Cards">
-              {playerDeck.map((card) => (
-                <button
-                  type="button"
-                  key={ card.cardName }
-                  className="Game-Card"
-                  onClick={ () => this.selectCard(card) }
-                >
-                  <CardMini preview="small" { ...card } />
-                </button>
-              ))}
+            <div style={ { textAlign: 'center' } }>
+              <h3>Escolha uma carta</h3>
+              <div className="Game-Cards">
+                {playerDeck.map((card) => (
+                  <button
+                    type="button"
+                    key={ card.cardName }
+                    className="Game-Card"
+                    onClick={ () => this.selectCard(card) }
+                  >
+                    <CardMini preview="small" { ...card } />
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </section>

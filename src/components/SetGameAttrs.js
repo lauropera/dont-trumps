@@ -25,7 +25,10 @@ class SetGameAttrs extends Component {
           attribute.length === 0 && turn % 2 !== 0 ? 'Select-Attr' : 'Hide'
         } Game-Attr` }
       >
-        <h3>Seu turno!</h3>
+        <div>
+          <h3>Seu turno!</h3>
+          <h3>Escolha um atributo</h3>
+        </div>
         <div className="Attr-Buttons-Container">
           <div className="Attr-Button">
             <img src={ atkIcon } alt="Icone de lança" />
