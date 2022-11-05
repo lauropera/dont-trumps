@@ -22,7 +22,7 @@ Vou continuar evoluindo ele com o tempo!
 * CSS
 * JavaScript
 * React.js
-* React Redux
+* Redux
 * React Router
 * React Testing Library (RTL)
 
