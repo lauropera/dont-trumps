@@ -38,11 +38,6 @@ export const saveCards = (payload) => ({
   payload,
 });
 
-export const setGameDeck = (person, payload) => ({
-  type: person,
-  payload,
-});
-
 export const setBattleAttr = (payload) => ({
   type: BATTLE_TYPE,
   payload,

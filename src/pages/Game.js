@@ -1,12 +1,10 @@
 import { bool, func, number, string } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CardMini from '../components/CardMini';
 import SetGameAttrs from '../components/SetGameAttrs';
 import deckArr from '../data/deck-data';
 import {
   resetGame as resetGameAction,
-  setGameDeck as setGameDeckAction,
   startBattle as startBattleAction,
   startTurn as startTurnAction,
 } from '../redux/actions';
@@ -14,6 +12,7 @@ import Header from '../components/Header';
 import '../styles/Game.css';
 import TurnResults from '../components/TurnResults';
 import { getCards } from '../redux/reducers/customCard';
+import GameCard from '../components/GameCard';
 
 class Game extends Component {
   state = {
@@ -113,8 +112,8 @@ class Game extends Component {
 
   render() {
     const {
-      playerDeck, playerChoice, cpuChoice,
-      turnResult, chooseAttribute,
+      playerDeck, playerChoice,
+      cpuChoice, turnResult, chooseAttribute,
     } = this.state;
     const { battleAttribute, turn, turnInProgress, attribute } = this.props;
     return (
@@ -122,7 +121,7 @@ class Game extends Component {
         <Header />
         <section className="Game">
           <h2>
-            {battleAttribute !== ''
+            {battleAttribute
               && turn % 2 === 0
               && `Atributo do turno: ${attribute}`}
           </h2>
@@ -143,14 +142,11 @@ class Game extends Component {
           {!chooseAttribute && (
             <div className="Game-Cards">
               {playerDeck.map((card) => (
-                <button
-                  type="button"
+                <GameCard
                   key={ card.cardName }
-                  className="Game-Card"
-                  onClick={ () => this.selectCard(card) }
-                >
-                  <CardMini preview="small" { ...card } />
-                </button>
+                  card={ card }
+                  selectCard={ this.selectCard }
+                />
               ))}
             </div>
           )}
@@ -169,14 +165,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   startTurn: () => dispatch(startTurnAction()),
-  setDeckFor: (person, deck) => dispatch(setGameDeckAction(person, deck)),
   battleResult: (result) => dispatch(startBattleAction(result)),
   resetGame: () => dispatch(resetGameAction()),
 });
 
 Game.propTypes = {
   battleAttribute: string.isRequired,
-  setDeckFor: func.isRequired,
   startTurn: func.isRequired,
   resetGame: func.isRequired,
   battleResult: func.isRequired,
