@@ -16,41 +16,25 @@ Vou continuar evoluindo ele com o tempo!
 
 <br />
 
-## ⚙️ Tecnologias
-
-* HTML5
-* CSS
-* JavaScript
-* React.js
-* Redux
-* React Router
-* React Testing Library (RTL)
-
-<br />
-
-## 📚 Documentação
+## 🚀 Instalação e execução
 
   <details>
-    <summary>Instalação e execução</summary>
+    <summary>Instalando e executando</summary>
     <br />
 
-- Faça o fork do repositório:
-  Tutorial [AQUI](https://github.com/UNIVALI-LITE/Portugol-Studio/wiki/Fazendo-um-Fork-do-reposit%C3%B3rio)
-- Abra seu terminal e navegue até a pasta onde preferir alocar o projeto.
+### 1 - Clone o repositório:
 
-- Clone o repositório:
+```
+git clone git@github.com:lauropera/dont-trumps.git
+```
 
-  ```sh
-    git clone git@github.com:"SeuNomeNoGitHub"/dont-trumps.git
-  ```
-
-- Apos ter o repositório clonado em sua maquina, execute este comando para acessar a parta do projeto:
+### 2 - Apos ter o repositório clonado em sua maquina, execute este comando para acessar a pasta do projeto:
 
   ```sh
     cd dont-trumps
   ```
 
-- Dentro da pasta do projeto, execute o comando abaixo para instalar as dependências do projeto:
+### 3 - Dentro da pasta do projeto, execute o comando abaixo para instalar as dependências do projeto:
 
   Caso utilize o npm:
 
@@ -64,7 +48,7 @@ Vou continuar evoluindo ele com o tempo!
     yarn install
   ```
 
-- Dentro da pasta do projeto, execute o comando abaixo para iniciar o servidor do projeto:
+### 4 - Dentro da pasta do projeto, execute o comando abaixo para iniciar o servidor do projeto:
 
       Caso utilize o npm:
 
@@ -78,11 +62,12 @@ Vou continuar evoluindo ele com o tempo!
         yarn start
       ```
 
-  O aplicativo sera executado em modo de desenvolvimento.
+### 5 - Acesse a aplicação:
+
   Abrindo na porta padrão que o React usa: <http://localhost:3000/> em seu navegador.
 
-    </details>
-  <br />
+  </details>
+<br />
 
 # :iphone: Mobile
 
@@ -97,10 +82,22 @@ Vou continuar evoluindo ele com o tempo!
 
 <br />
 
+## ⚙️ Tecnologias
+
+* HTML5
+* CSS
+* JavaScript
+* React.js
+* Redux
+* React Router
+* React Testing Library (RTL)
+
 ## :copyright: Aviso de direitos autorais
 A franquia Don't Starve e seus personagens pertencem a Klei Entertainment, todos os direitos reservados. Esse projeto foi desenvolvido para fins de aprendizado, não possuindo nenhuma relação com a companhia.
 
 #
+
+<br />
 
 <div>
   <p align="center">🍐</p>
