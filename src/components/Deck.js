@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { arrayOf, bool, func, shape, string } from 'prop-types';
 import { FaTrash } from 'react-icons/fa';
 import { connect } from 'react-redux';
@@ -10,54 +10,61 @@ import deckArr from '../data/deck-data';
 import Card from './Card';
 import '../styles/Deck.css';
 import { getCards } from '../redux/reducers/customCard';
+import requests from '../services/requests';
 
-class Deck extends React.Component {
-  componentDidMount() {
-    this.saveDeck();
-  }
-
-  saveDeck = () => {
-    const { saveCards, cardList } = this.props;
+function Deck({
+  saveCards,
+  cardList,
+  filterTrunfo,
+  filterName,
+  filterRarity,
+  removeCard,
+}) {
+  const saveDeck = () => {
     saveCards([...cardList, ...deckArr]);
   };
 
-  applyFilters(deck) {
-    const { filterTrunfo, filterName, filterRarity } = this.props;
-    return deck.filter(({ cardName, cardRare, cardTrunfo }) => {
-      if (filterTrunfo) return cardTrunfo === true;
-      return (
-        cardName.toLowerCase().includes(filterName.toLowerCase())
-        && (cardRare === filterRarity || filterRarity === 'todas')
-      );
-    });
-  }
-
-  render() {
-    const { removeCard } = this.props;
+  const applyFilters = (deck) => deck.filter(({ cardName, cardRare, cardTrunfo }) => {
+    if (filterTrunfo) return cardTrunfo === true;
     return (
-      <main className="deck">
-        {this.applyFilters(getCards()).map((card) => (
-          <div key={ card.cardName } className="deck-container">
-            <Card { ...card } />
-            <button
-              id={ card.cardName }
-              type="button"
-              data-testid="delete-button"
-              className="delete-button"
-              onClick={ () => removeCard(card) }
-            >
-              <FaTrash pointerEvents="none" />
-            </button>
-          </div>
-        ))}
-        {this.applyFilters(deckArr).map((card) => (
-          <div key={ card.cardName } className="deck-container">
-            <Card { ...card } customCard />
-          </div>
-        ))}
-      </main>
+      cardName.toLowerCase().includes(filterName.toLowerCase())
+        && (cardRare === filterRarity || filterRarity === 'todas')
     );
-  }
+  });
+
+  const listCards = async () => {
+    const cards = await requests.get.all();
+    console.log(cards);
+  };
+
+  useEffect(() => {
+    saveDeck();
+    listCards();
+  }, []);
+
+  return (
+    <main className="deck">
+      {applyFilters(getCards()).map((card) => (
+        <div key={ card.cardName } className="deck-container">
+          <Card { ...card } />
+          <button
+            id={ card.cardName }
+            type="button"
+            data-testid="delete-button"
+            className="delete-button"
+            onClick={ () => removeCard(card) }
+          >
+            <FaTrash pointerEvents="none" />
+          </button>
+        </div>
+      ))}
+      {applyFilters(deckArr).map((card) => (
+        <div key={ card.cardName } className="deck-container">
+          <Card { ...card } customCard />
+        </div>
+      ))}
+    </main>
+  );
 }
 
 Deck.propTypes = {
